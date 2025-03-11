@@ -84,7 +84,7 @@
             :root {
                 --start: 6;
                 --end: 994;
-                --lightness: 65%;
+                --lightness: 25%;
                 --base-chroma: 0.3;
                 --scroll-color: oklch(var(--lightness) var(--base-chroma) var(--start));
                 --fade-opacity-low: 0.12;
@@ -94,10 +94,18 @@
                 --snap-margin: calc(50vh - 1.5em);
                 --hover-offset: 10px;
                 --hover-scale: 1.03;
+                --bg-color: #ffffff;
+                --text-color: #1a1a1a;
+                --secondary-text-color: #4a4a4a;
             }
             
             @media (prefers-color-scheme: dark) {
-                :root { --lightness: 75%; }
+                :root { 
+                    --lightness: 75%;
+                    --bg-color: #000000;
+                    --text-color: #ffffff;
+                    --secondary-text-color: #cccccc;
+                }
             }
             
             @media (prefers-reduced-motion: reduce) {
@@ -246,7 +254,9 @@
 
             footer {
                 padding-block: 2rem;
-                opacity: 0.5;
+                opacity: 0.7;
+                color: var(--secondary-text-color);
+                transition: color 0.3s ease;
             }
 
             h1 {
@@ -256,11 +266,13 @@
                 line-height: 0.8;
                 margin: 0;
                 background: linear-gradient(
-                    canvasText 60%,
-                    color-mix(in oklch, canvas, canvasText)
+                    var(--text-color) 60%,
+                    color-mix(in oklch, var(--bg-color), var(--text-color))
                 );
                 background-clip: text;
-                color: #0000;
+                -webkit-background-clip: text;
+                color: transparent;
+                transition: background 0.3s ease;
             }
         }
 
