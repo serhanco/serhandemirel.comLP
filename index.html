@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Serhan Demirel - Digital Solution Consultant specializing in business transformation and technical solutions">
+    <meta name="theme-color" content="#000000">
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <title>Serhan Demirel - Digital Consultant</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png">
+    
+    <!-- Google Tag Manager -->
+    <script async defer src="https://www.googletagmanager.com/gtm.js?id=GTM-5JJSC7D5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+    </script>
+    <!-- End Google Tag Manager -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;600&display=swap');
+
+        @layer normalize, base, demo, stick, effect, scrollbar;
+
+        @layer scrollbar {
+            @property --scroll-props {
+                syntax: '<number> <number>';
+                inherits: true;
+                initial-value: 0 0;
+            }
+            
+            [data-sync-scrollbar] {
+                scrollbar-color: var(--scroll-color, light-dark(black, white)) #0000;
+            }
+
+            @supports (animation-timeline: scroll()) and (animation-range: 0% 100%) {
+                [data-sync-scrollbar='true'] {
+                    --scroll-color: oklch(var(--lightness) var(--chroma, 0) var(--scroller));
+                    timeline-scope: --list;
+                    animation: scroll-effect both cubic-bezier(0.4, 0, 0.2, 1);
+                    animation-range: entry 20% exit 80%;
+                    animation-timeline: --list;
+                    animation-composition: replace;
+                    ul {
+                        view-timeline: --list block;
+                        scroll-timeline: --list block;
+                        scroll-behavior: smooth;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                }
+            }
+
+            @keyframes scroll-effect {
+                0%, 100% { --scroll-props: var(--start) 0; }
+                50% { --scroll-props: var(--end) 0.3; }
+            }
+        }
+
+        @layer effect {
+            :root {
+                --start: 6;
+                --end: 994;
+                --lightness: 65%;
+                --base-chroma: 0.3;
+                --scroll-color: oklch(var(--lightness) var(--base-chroma) var(--start));
+                --fade-opacity-low: 0.12;
+                --fade-opacity-high: 1;
+                --fade-brightness: 1.4;
+                --animation-threshold: 0.3;
+                --snap-margin: calc(50vh - 1.5em);
+                --hover-offset: 10px;
+                --hover-scale: 1.03;
+            }
+            
+            @media (prefers-color-scheme: dark) {
+                :root { --lightness: 75%; }
+            }
+            
+            @media (prefers-reduced-motion: reduce) {
+                :root {
+                    --fade-opacity-low: 0.8;
+                    --fade-brightness: 1;
+                    --animation-threshold: 0;
+                }
+            }
+            
+            ul {
+                --step: calc((var(--end) - var(--start)) / (var(--count) - 1));
+                content-visibility: auto;
+                contain-intrinsic-size: 1em;
+            }
+            
+            li {
+                --i: 0;
+                color: oklch(var(--lightness) var(--base-chroma) calc(var(--start) + (var(--step) * var(--i))));
+                will-change: opacity;
+                transform: translateZ(0);
+            }
+
+            @supports (animation-timeline: scroll()) and (animation-range: 0% 100%) {
+                li {
+                    opacity: var(--fade-opacity-low);
+                    animation: item-fade both cubic-bezier(0.4, 0.1, 0.1, 1);
+                    animation-range: entry 40% exit 60%;
+                    animation-timeline: view();
+                    scroll-snap-align: center;
+                    scroll-snap-stop: always;
+                    scroll-margin-block: calc(50vh - 1.5em);
+                    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    transform-origin: left center;
+                    will-change: transform, opacity;
+                }
+
+                li:hover {
+                    transform: scale(1.03) translateX(10px);
+                    letter-spacing: 0.02em;
+                }
+
+                @keyframes item-fade {
+                    0% { 
+                        opacity: var(--fade-opacity-low);
+                        transform: translateY(15px) scale(0.98);
+                    }
+                    50% { 
+                        opacity: var(--fade-opacity-high);
+                        filter: brightness(var(--fade-brightness));
+                        transform: translateY(0) scale(1);
+                    }
+                    100% {
+                        opacity: var(--fade-opacity-low);
+                        transform: translateY(-15px) scale(0.98);
+                    }
+                }
+            }
+        }
+
+        @layer stick {
+            section:first-of-type {
+                --font-level: 6;
+                --font-size-min: 20;
+                display: flex;
+                line-height: 1.25;
+                width: 100%;
+                padding-left: 2rem;
+                @media(min-width: 768px) {
+                    padding-left: 5rem;
+                }
+            }
+            section:last-of-type {
+                min-height: 100svh;
+                display: flex;
+                place-items: center;
+                width: 100%;
+                justify-content: center;
+
+                h2 {
+                    --font-level: 6;
+                    --font-size-min: 20;
+                }
+            }
+            main {
+                width: 100%;
+            }
+            section:first-of-type h2 {
+                position: sticky;
+                top: calc(50% - 0.5lh);
+                font-size: inherit;
+                margin: 0;
+                display: inline-block;
+                height: fit-content;
+                font-weight: 600;
+            }
+            ul {
+                font-weight: 600;
+                padding-inline: 0;
+                margin: 0;
+                list-style-type: none;
+            }
+            html {
+                scroll-behavior: smooth;
+                overscroll-behavior: none;
+                scroll-snap-type: y proximity;
+                height: 100%;
+                scroll-padding: 1rem;
+            }
+            
+            body {
+                min-height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            section:first-of-type {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+            li {
+                scroll-snap-align: center;
+            }
+            h2,
+            li:last-of-type {
+                background: linear-gradient(
+                    canvasText 50%,
+                    color-mix(in oklch, canvas, canvasText 25%)
+                );
+                background-clip: text;
+                color: #0000;
+            }
+        }
+
+        @layer demo {
+            header {
+                min-height: 100svh;
+                display: flex;
+                place-items: center;
+                width: 100%;
+                padding-inline: 2rem;
+                @media(min-width: 768px) {
+                    padding-inline: 5rem;
+                }
+            }
+
+            footer {
+                padding-block: 2rem;
+                opacity: 0.5;
+            }
+
+            h1 {
+                --font-size-min: 24;
+                --font-level: 8;
+                text-wrap: pretty;
+                line-height: 0.8;
+                margin: 0;
+                background: linear-gradient(
+                    canvasText 60%,
+                    color-mix(in oklch, canvas, canvasText)
+                );
+                background-clip: text;
+                color: #0000;
+            }
+        }
+
+        @layer base {
+            :root {
+                --font-size-min: 14;
+                --font-size-max: 20;
+                --font-ratio-min: 1.1;
+                --font-ratio-max: 1.33;
+                --font-width-min: 375;
+                --font-width-max: 1500;
+            }
+
+            html {
+                color-scheme: dark;
+            }
+
+            [data-theme='light'] {
+                color-scheme: light only;
+            }
+
+            [data-theme='dark'] {
+                color-scheme: dark only;
+            }
+
+            :where(.fluid) {
+                --fluid-min: calc(
+                    var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
+                );
+                --fluid-max: calc(
+                    var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0))
+                );
+                --fluid-preferred: calc(
+                    (var(--fluid-max) - var(--fluid-min)) /
+                    (var(--font-width-max) - var(--font-width-min))
+                );
+                --fluid-type: clamp(
+                    (var(--fluid-min) / 16) * 1rem,
+                    ((var(--fluid-min) / 16) * 1rem) -
+                    (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
+                    (var(--fluid-preferred) * var(--variable-unit, 100vi)),
+                    (var(--fluid-max) / 16) * 1rem
+                );
+                font-size: var(--fluid-type);
+            }
+
+            *,
+            *:after,
+            *:before {
+                box-sizing: border-box;
+            }
+
+            body {
+                display: grid;
+                place-items: center;
+                background: black;
+                min-height: 100svh;
+                font-family: 'Geist', 'SF Pro Text', 'SF Pro Icons', 'AOS Icons',
+                'Helvetica Neue', Helvetica, Arial, sans-serif, system-ui;
+            }
+
+            body::before {
+                --size: 45px;
+                --line: color-mix(in hsl, canvasText, transparent 70%);
+                content: '';
+                height: 100svh;
+                width: 100vw;
+                position: fixed;
+                background: linear-gradient(
+                    90deg,
+                    var(--line) 1px,
+                    transparent 1px var(--size)
+                    )
+                    50% 50% / var(--size) var(--size),
+                linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+                    var(--size) var(--size);
+                mask: linear-gradient(-20deg, transparent 50%, white);
+                top: 0;
+                transform-style: flat;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            .social-links {
+                display: flex;
+                gap: 2rem;
+                justify-content: center;
+                margin-top: 2rem;
+            }
+
+            .social-link {
+                color: canvasText;
+                opacity: 0.8;
+                transition: opacity 0.2s ease;
+                display: grid;
+                place-items: center;
+                width: 32px;
+                height: 32px;
+            }
+
+            .social-link:hover {
+                opacity: 1;
+            }
+
+            .logo-link {
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                width: 75px;
+                height: 75px;
+                display: grid;
+                place-items: center;
+                opacity: 0.8;
+            }
+
+            .logo-link img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            .logo-link:hover {
+                opacity: 1;
+            }
+
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5JJSC7D5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <header>
+    <h1 class="fluid">while you<br />scroll...</h1>
+  </header>
+  <main>
+    <section class="content fluid">
+      <h2><span aria-hidden="true">we can&nbsp;</span>
+        <span class="sr-only">we can ship things.</span>
+      </h2>
+        <ul aria-hidden=true style=--count:35>
+            <li style=--i:0>design.</li>
+            <li style=--i:1>prototype.</li>
+            <li style=--i:2>solve.</li>
+            <li style=--i:3>build.</li>
+            <li style=--i:4>develop.</li>
+            <li style=--i:5>debug.</li>
+            <li style=--i:6>learn.</li>
+            <li style=--i:7>optimize.</li>
+            <li style=--i:8>ship.</li>
+            <li style=--i:9>prompt.</li>
+            <li style=--i:10>collaborate.</li>
+            <li style=--i:11>create.</li>
+            <li style=--i:12>transform.</li>
+            <li style=--i:13>automate.</li>
+            <li style=--i:14>innovate.</li>
+            <li style=--i:15>test.</li>
+            <li style=--i:16>analyze.</li>
+            <li style=--i:17>scale.</li>
+            <li style=--i:18>integrate.</li>
+            <li style=--i:19>migrate.</li>
+            <li style=--i:20>secure.</li>
+            <li style=--i:21>deploy.</li>
+            <li style=--i:22>measure.</li>
+            <li style=--i:23>convert.</li>
+            <li style=--i:24>engage.</li>
+            <li style=--i:25>monetize.</li>
+            <li style=--i:26>accelerate.</li>
+            <li style=--i:27>architect.</li>
+            <li style=--i:28>refactor.</li>
+            <li style=--i:29>strategize.</li>
+            <li style=--i:30>consult.</li>
+            <li style=--i:31>streamline.</li>
+            <li style=--i:32>empower.</li>
+            <li style=--i:33>grow.</li>
+            <li style=--i:34>succeed.</li>
+        </ul>
+    </section>
+    <section style="flex-direction:column">
+      <h2 class="fluid">now let's!</h2>
+      <!--<span style="display:block; font size:15px">info@serhandemirel.com</span>-->
+      <div class="social-links">
+            <a href="mailto:info@serhandemirel.com" class="social-link" id="QuickMail" aria-label="Email me">
+                <i data-lucide="mail" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/serhandemirel/" class="social-link" target="_blank" rel="noopener noreferrer" id="QuickLinkedin" aria-label="Visit LinkedIn profile">
+                <i data-lucide="linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/+905322702736" class="social-link" target="_blank" rel="noopener noreferrer" id="QuickWhatsapp" aria-label="Contact on WhatsApp">
+                <i data-lucide="message-circle" aria-hidden="true"></i>
+            </a>
+            <a href="https://t.me/serhandemirel" class="social-link" target="_blank" rel="noopener noreferrer" id="QuickTelegram" aria-label="Contact on Telegram">
+                <i data-lucide="send" aria-hidden="true"></i>
+            </a>
+        </div>
+    </section>
+  </main>
+  <footer>
+    <p>Serhan Demirel, Digital Solution Consultant &copy; <script>document.write(new Date().getFullYear())</script></p>
+  </footer>
+  <a class="logo-link" href="/" aria-label="Home">
+    <img src="/img/SD-logo-75px-white-transparent.webp" alt="Serhan Demirel Logo" width="75" height="75" loading="lazy">
+  </a>
+  
+  <!-- Initialize icons -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide?.createIcons) {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+
+  <!-- Defer loading of icons with better error handling -->
+  <script defer src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" 
+          onerror="console.error('Failed to load Lucide icons');"></script>
+  <script>
+    const initIcons = () => {
+      try {
+        if (window.lucide?.createIcons) {
+          window.lucide.createIcons();
+          console.log('Icons initialized successfully');
+        }
+      } catch (error) {
+        console.error('Error initializing icons:', error);
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initIcons);
+    } else {
+      initIcons();
+    }
+
+    // Re-attempt icon initialization if loaded after DOMContentLoaded
+    document.addEventListener('lucide-loaded', initIcons);
+  </script>
+</body>
+</html>
