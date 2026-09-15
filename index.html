@@ -976,7 +976,7 @@
                     <p class="text-gray-400 text-lg">Tell me about your project and I'll get back to you shortly.</p>
                 </div>
                 
-                <form id="projectForm" action="mailto:info@serhandemirel.com?subject=New%20Project" method="POST" enctype="text/plain" class="space-y-6" autocomplete="off">
+                <form id="projectForm" class="space-y-6" autocomplete="off">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2 text-left">
                             <label for="name" class="block text-sm font-medium text-gray-400 ml-1">Name</label>
@@ -993,7 +993,10 @@
                         <textarea id="message" name="Message" rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all resize-none" placeholder="Describe your project, goals, and timeline..." autocomplete="off"></textarea>
                     </div>
                     
-                    <button type="submit" class="w-full group relative overflow-hidden rounded-xl p-[1px] mt-2">
+                    
+                    <div id="formMessage" class="hidden rounded-xl p-4 text-sm font-medium transition-all"></div>
+                    
+                    <button type="submit" id="submitBtn" class="w-full group relative overflow-hidden rounded-xl p-[1px] mt-2">
                         <span class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-80 group-hover:opacity-100 transition-opacity duration-300"></span>
                         <div class="relative bg-[#0a0a0a] px-8 py-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 hover:bg-transparent">
                             <span class="text-lg font-bold text-white">Send Message</span>
@@ -1007,6 +1010,61 @@
 
     <!-- Modal Logic -->
     <script>
+        
+        // Form Submission AJAX
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            const btnText = submitBtn.querySelector('span');
+            
+            // Loading state
+            const originalText = btnText.innerText;
+            btnText.innerText = 'Sending...';
+            submitBtn.style.pointerEvents = 'none';
+            submitBtn.style.opacity = '0.7';
+            formMessage.classList.add('hidden');
+            formMessage.classList.remove('bg-green-500/10', 'text-green-400', 'bg-red-500/10', 'text-red-400', 'border', 'border-green-500/20', 'border-red-500/20');
+            
+            const formData = new FormData(form);
+            
+            fetch('/process/contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json().then(data => ({ status: response.status, body: data })))
+            .then(res => {
+                formMessage.classList.remove('hidden');
+                
+                if (res.status === 200 && res.body.status === 'success') {
+                    formMessage.classList.add('bg-green-500/10', 'text-green-400', 'border', 'border-green-500/20');
+                    formMessage.innerText = res.body.message;
+                    form.reset();
+                    
+                    // Close modal automatically after 3 seconds
+                    setTimeout(() => {
+                        closeProjectModal();
+                        setTimeout(() => { formMessage.classList.add('hidden'); }, 500);
+                    }, 3000);
+                } else {
+                    formMessage.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/20');
+                    formMessage.innerText = res.body.message || 'Something went wrong. Please try again.';
+                }
+            })
+            .catch(error => {
+                formMessage.classList.remove('hidden');
+                formMessage.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/20');
+                formMessage.innerText = 'Network error. Please try again later.';
+            })
+            .finally(() => {
+                btnText.innerText = originalText;
+                submitBtn.style.pointerEvents = 'auto';
+                submitBtn.style.opacity = '1';
+            });
+        });
+
         function openProjectModal() {
             const modal = document.getElementById('projectModal');
             const backdrop = document.getElementById('projectModalBackdrop');
