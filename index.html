@@ -125,6 +125,16 @@
                 animation-timeline: --logo-showcase;
                 animation-range: entry exit;
             }
+            .logo-row-3 {
+                animation: scroll-marquee-left linear both;
+                animation-timeline: --logo-showcase;
+                animation-range: entry exit;
+            }
+            .logo-row-2 {
+                animation: scroll-marquee-right linear both;
+                animation-timeline: --logo-showcase;
+                animation-range: entry exit;
+            }
             @keyframes scroll-marquee-left {
                 from { transform: translateX(0); }
                 to { transform: translateX(-50%); }
@@ -345,7 +355,12 @@ to { transform: translateX(0); }
             <!-- Row 2: Right Scroll -->
             <div class="logo-row-2 flex items-center justify-start gap-16 whitespace-nowrap w-max px-8 ml-[-20%]">
             </div>
+            
+            <!-- Row 3: Left Scroll -->
+            <div class="logo-row-3 flex items-center justify-start gap-16 whitespace-nowrap w-max px-8 ml-[-10%]">
+            </div>
 
+        </div>
         </div>
     </section>
 
@@ -843,13 +858,9 @@ to { transform: translateX(0); }
     <!-- LOGO THEME CONFIGURATION & DYNAMIC GENERATION -->
     <script>
       // 1. TEMA AYARI
-      // 'white' -> Bembeyaz şeffaf logolar (Karanlık tema için en iyisi)
-      // 'color' -> Orijinal renkli şeffaf logolar
       const LOGO_THEME = 'white'; 
       
       // 2. LOGO SIRALAMASI
-      // Logoların sırasını değiştirmek için buradaki satırların yerlerini aşağı/yukarı taşıyabilirsiniz.
-      // Yeni logo eklemek için listeye yeni bir satır eklemeniz yeterlidir.
       const BRAND_LOGOS = [
           { src: 'acibadem.svg', alt: 'Acıbadem' },
           { src: 'florence.png', alt: 'Florence Nightingale' },
@@ -873,37 +884,36 @@ to { transform: translateX(0); }
           { src: 'renewa.png', alt: 'Renewa Clinic' },
           { src: 'coordin_art.png', alt: 'Coordin.Art' },
           { src: 'healthcare_diplomacy.png', alt: 'Healthcare Diplomacy' },
-          { src: 'meseri_energy.png', alt: 'Meseri Energy' }
+          { src: 'meseri_energy.png', alt: 'Meseri Energy' },
+          { src: 'iesyazilim.png', alt: 'İES Yazılım' },
+          { src: 'hekim_bilisim.svg', alt: 'Hekim Bilişim' }
       ];
 
       document.addEventListener("DOMContentLoaded", () => {
           const row1 = document.querySelector('.logo-row-1');
           const row2 = document.querySelector('.logo-row-2');
+          const row3 = document.querySelector('.logo-row-3');
           
-          if (!row1 || !row2) return;
+          if (!row1 || !row2 || !row3) return;
 
-          // Logoları iki satıra eşit böl
-          const half = Math.ceil(BRAND_LOGOS.length / 2);
-          const firstHalf = BRAND_LOGOS.slice(0, half);
-          const secondHalf = BRAND_LOGOS.slice(half);
+          // Logoları 3 satıra böl
+          const third = Math.ceil(BRAND_LOGOS.length / 3);
+          const firstThird = BRAND_LOGOS.slice(0, third);
+          const secondThird = BRAND_LOGOS.slice(third, third * 2);
+          const lastThird = BRAND_LOGOS.slice(third * 2);
 
-          // HTML oluşturucu fonksiyon
           const generateHTML = (logoArray) => {
               let html = '';
               logoArray.forEach(logo => {
-                  // Temaya göre klasör yolunu belirle
                   const folder = LOGO_THEME === 'white' ? 'white' : 'color';
                   html += `<img src="assets/img/brands/${folder}/${logo.src}" alt="${logo.alt}" class="h-10 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
               });
               return html;
           };
 
-          const row1HTML = generateHTML(firstHalf);
-          const row2HTML = generateHTML(secondHalf);
-
-          // Kusursuz döngü (infinite marquee) için her satırı 2 kez kopyalayıp içine basıyoruz
-          row1.innerHTML = row1HTML + row1HTML;
-          row2.innerHTML = row2HTML + row2HTML;
+          row1.innerHTML = generateHTML(firstThird) + generateHTML(firstThird);
+          row2.innerHTML = generateHTML(secondThird) + generateHTML(secondThird);
+          row3.innerHTML = generateHTML(lastThird) + generateHTML(lastThird);
       });
     </script>
 </body>
