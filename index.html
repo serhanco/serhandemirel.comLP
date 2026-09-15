@@ -1,526 +1,835 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Serhan Demirel - Digital Solution Consultant specializing in business transformation and technical solutions">
-    <meta name="theme-color" content="#000000">
-    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
-    <meta name="keywords" content="Serhan Demirel, Digital Solution Consultant, Business Transformation, Technical Solutions, Web Development, UX Design">
-    <meta name="author" content="Serhan Demirel">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://serhandemirel.com">
-    <meta property="og:title" content="Serhan Demirel - Digital Consultant">
-    <meta property="og:description" content="Digital Solution Consultant specializing in business transformation and technical solutions">
-    <meta property="og:image" content="img/SD-logo-300px.webp">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://serhandemirel.com">
-    <meta property="twitter:title" content="Serhan Demirel - Digital Consultant">
-    <meta property="twitter:description" content="Digital Solution Consultant specializing in business transformation and technical solutions">
-    <meta property="twitter:image" content="img/SD-logo-300px.webp">
-    
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="canonical" href="https://serhandemirel.com">
-    <title>Serhan Demirel - Digital Consultant</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
-    
+    <title>Serhan Demirel | Digital Product Architect</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8MNLDTX09"></script>
     <!-- Google Tag Manager -->
-    <script async defer src="https://www.googletagmanager.com/gtm.js?id=GTM-5JJSC7D5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-            'gtm.start': new Date().getTime(),
-            event: 'gtm.js'
-        });
-    </script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5JJSC7D5');</script>
     <!-- End Google Tag Manager -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;600&display=swap');
-
-        @layer normalize, base, demo, stick, effect, scrollbar;
-
-        @layer scrollbar {
-            @property --scroll-props {
-                syntax: '<number> <number>';
-                inherits: true;
-                initial-value: 0 0;
-            }
-            
-            [data-sync-scrollbar] {
-                scrollbar-color: var(--scroll-color, light-dark(black, white)) #0000;
-            }
-
-            @supports (animation-timeline: scroll()) and (animation-range: 0% 100%) {
-                [data-sync-scrollbar='true'] {
-                    --scroll-color: oklch(var(--lightness) var(--chroma, 0) var(--scroller));
-                    timeline-scope: --list;
-                    animation: scroll-effect both cubic-bezier(0.4, 0, 0.2, 1);
-                    animation-range: entry 20% exit 80%;
-                    animation-timeline: --list;
-                    animation-composition: replace;
-                    ul {
-                        view-timeline: --list block;
-                        scroll-timeline: --list block;
-                        scroll-behavior: smooth;
-                        -webkit-overflow-scrolling: touch;
-                    }
-                }
-            }
-
-            @keyframes scroll-effect {
-                0%, 100% { --scroll-props: var(--start) 0; }
-                50% { --scroll-props: var(--end) 0.3; }
-            }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        @layer effect {
-            :root {
-                --start: 6;
-                --end: 994;
-                --lightness: 25%;
-                --base-chroma: 0.3;
-                --scroll-color: oklch(var(--lightness) var(--base-chroma) var(--start));
-                --fade-opacity-low: 0.12;
-                --fade-opacity-high: 1;
-                --fade-brightness: 1.4;
-                --animation-threshold: 0.3;
-                --snap-margin: calc(50vh - 1.5em);
-                --hover-offset: 10px;
-                --hover-scale: 1.03;
-                --bg-color: #ffffff;
-                --text-color: #1a1a1a;
-                --secondary-text-color: #4a4a4a;
-            }
-            
-            @media (prefers-color-scheme: dark) {
-                :root { 
-                    --lightness: 75%;
-                    --bg-color: #000000;
-                    --text-color: #ffffff;
-                    --secondary-text-color: #cccccc;
-                }
-            }
-            
-            @media (prefers-reduced-motion: reduce) {
-                :root {
-                    --fade-opacity-low: 0.8;
-                    --fade-brightness: 1;
-                    --animation-threshold: 0;
-                }
-            }
-            
-            ul {
-                --step: calc((var(--end) - var(--start)) / (var(--count) - 1));
-                content-visibility: auto;
-                contain-intrinsic-size: 1em;
-            }
-            
-            li {
-                --i: 0;
-                color: oklch(var(--lightness) var(--base-chroma) calc(var(--start) + (var(--step) * var(--i))));
-                will-change: opacity;
-                transform: translateZ(0);
-            }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
 
-            @supports (animation-timeline: scroll()) and (animation-range: 0% 100%) {
-                li {
-                    opacity: var(--fade-opacity-low);
-                    animation: item-fade both cubic-bezier(0.4, 0.1, 0.1, 1);
-                    animation-range: entry 40% exit 60%;
-                    animation-timeline: view();
-                    scroll-snap-align: center;
-                    scroll-snap-stop: always;
-                    scroll-margin-block: calc(50vh - 1.5em);
-                    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-                    transform-origin: left center;
-                    will-change: transform, opacity;
-                }
+        /* Hide Scrollbar for Horizontal Slider but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-                li:hover {
-                    transform: scale(1.03) translateX(10px);
-                    letter-spacing: 0.02em;
-                }
-
-                @keyframes item-fade {
-                    0% { 
-                        opacity: var(--fade-opacity-low);
-                        transform: translateY(15px) scale(0.98);
-                    }
-                    50% { 
-                        opacity: var(--fade-opacity-high);
-                        filter: brightness(var(--fade-brightness));
-                        transform: translateY(0) scale(1);
-                    }
-                    100% {
-                        opacity: var(--fade-opacity-low);
-                        transform: translateY(-15px) scale(0.98);
-                    }
-                }
-            }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradient-shift 5s linear infinite;
         }
 
-        @layer stick {
-            section:first-of-type {
-                --font-level: 6;
-                --font-size-min: 20;
-                display: flex;
-                line-height: 1.25;
-                width: 100%;
-                padding-left: 2rem;
-                @media(min-width: 768px) {
-                    padding-left: 5rem;
-                }
-            }
-            section:last-of-type {
-                min-height: 100svh;
-                display: flex;
-                place-items: center;
-                width: 100%;
-                justify-content: center;
-
-                h2 {
-                    --font-level: 6;
-                    --font-size-min: 20;
-                }
-            }
-            main {
-                width: 100%;
-            }
-            section:first-of-type h2 {
-                position: sticky;
-                top: calc(50% - 0.5lh);
-                font-size: inherit;
-                margin: 0;
-                display: inline-block;
-                height: fit-content;
-                font-weight: 600;
-            }
-            ul {
-                font-weight: 600;
-                padding-inline: 0;
-                margin: 0;
-                list-style-type: none;
-            }
-            html {
-                scroll-behavior: smooth;
-                overscroll-behavior: none;
-                scroll-snap-type: y proximity;
-                height: 100%;
-                scroll-padding: 1rem;
-            }
-            
-            body {
-                min-height: 100%;
-                display: flex;
-                flex-direction: column;
-            }
-            
-            section:first-of-type {
-                scroll-snap-align: start;
-                scroll-snap-stop: always;
-            }
-            li {
-                scroll-snap-align: center;
-            }
-            h2,
-            li:last-of-type {
-                background: linear-gradient(
-                    canvasText 50%,
-                    color-mix(in oklch, canvas, canvasText 25%)
-                );
-                background-clip: text;
-                color: #0000;
-            }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
-        @layer demo {
-            header {
-                min-height: 100svh;
-                display: flex;
-                place-items: center;
-                width: 100%;
-                padding-inline: 2rem;
-                @media(min-width: 768px) {
-                    padding-inline: 5rem;
-                }
-            }
-
-            footer {
-                padding-block: 2rem;
-                opacity: 0.7;
-                color: var(--secondary-text-color);
-                transition: color 0.3s ease;
-            }
-
-            h1 {
-                --font-size-min: 24;
-                --font-level: 8;
-                text-wrap: pretty;
-                line-height: 0.8;
-                margin: 0;
-                background: linear-gradient(
-                    var(--text-color) 60%,
-                    color-mix(in oklch, var(--bg-color), var(--text-color))
-                );
-                background-clip: text;
-                -webkit-background-clip: text;
-                color: transparent;
-                transition: background 0.3s ease;
-            }
+        .word-mask {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 1.2em;
+            overflow: hidden;
+            vertical-align: bottom;
+            position: relative;
+            top: 0.05em;
         }
 
-        @layer base {
-            :root {
-                --font-size-min: 14;
-                --font-size-max: 20;
-                --font-ratio-min: 1.1;
-                --font-ratio-max: 1.33;
-                --font-width-min: 375;
-                --font-width-max: 1500;
-            }
+        .word-slider-inner {
+            display: flex;
+            flex-direction: column;
+            will-change: transform; 
+        }
 
-            html {
-                color-scheme: dark;
-            }
+        .word-item {
+            height: 1.2em;
+            line-height: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
 
-            [data-theme='light'] {
-                color-scheme: light only;
-            }
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-            [data-theme='dark'] {
-                color-scheme: dark only;
-            }
-
-            :where(.fluid) {
-                --fluid-min: calc(
-                    var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
-                );
-                --fluid-max: calc(
-                    var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0))
-                );
-                --fluid-preferred: calc(
-                    (var(--fluid-max) - var(--fluid-min)) /
-                    (var(--font-width-max) - var(--font-width-min))
-                );
-                --fluid-type: clamp(
-                    (var(--fluid-min) / 16) * 1rem,
-                    ((var(--fluid-min) / 16) * 1rem) -
-                    (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
-                    (var(--fluid-preferred) * var(--variable-unit, 100vi)),
-                    (var(--fluid-max) / 16) * 1rem
-                );
-                font-size: var(--fluid-type);
-            }
-
-            *,
-            *:after,
-            *:before {
-                box-sizing: border-box;
-            }
-
-            body {
-                display: grid;
-                place-items: center;
-                background: black;
-                min-height: 100svh;
-                font-family: 'Geist', 'SF Pro Text', 'SF Pro Icons', 'AOS Icons',
-                'Helvetica Neue', Helvetica, Arial, sans-serif, system-ui;
-            }
-
-            body::before {
-                --size: 45px;
-                --line: color-mix(in hsl, canvasText, transparent 70%);
-                content: '';
-                height: 100svh;
-                width: 100vw;
-                position: fixed;
-                background: linear-gradient(
-                    90deg,
-                    var(--line) 1px,
-                    transparent 1px var(--size)
-                    )
-                    50% 50% / var(--size) var(--size),
-                linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
-                    var(--size) var(--size);
-                mask: linear-gradient(-20deg, transparent 50%, white);
-                top: 0;
-                transform-style: flat;
-                pointer-events: none;
-                z-index: -1;
-            }
-
-            .social-links {
-                display: flex;
-                gap: 2rem;
-                justify-content: center;
-                margin-top: 2rem;
-            }
-
-            .social-link {
-                color: canvasText;
-                opacity: 0.8;
-                transition: opacity 0.2s ease;
-                display: grid;
-                place-items: center;
-                width: 32px;
-                height: 32px;
-            }
-
-            .social-link:hover {
-                opacity: 1;
-            }
-
-            .logo-link {
-                position: fixed;
-                top: 1rem;
-                left: 1rem;
-                width: 75px;
-                height: 75px;
-                display: grid;
-                place-items: center;
-                opacity: 0.8;
-            }
-
-            .logo-link img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
-
-            .logo-link:hover {
-                opacity: 1;
-            }
-
-            .sr-only {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border-width: 0;
-            }
+        /* Faded Edges for Logo Wall */
+        .mask-edges {
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
     </style>
 </head>
-<body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5JJSC7D5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <header>
-    <h1 class="fluid">while you<br />scroll...</h1>
-  </header>
-  <main>
-    <section class="content fluid">
-      <h2><span aria-hidden="true">we can&nbsp;</span>
-        <span class="sr-only">we can ship things.</span>
-      </h2>
-        <ul aria-hidden=true style=--count:35>
-            <li style=--i:0>design.</li>
-            <li style=--i:1>prototype.</li>
-            <li style=--i:2>solve.</li>
-            <li style=--i:3>build.</li>
-            <li style=--i:4>develop.</li>
-            <li style=--i:5>debug.</li>
-            <li style=--i:6>learn.</li>
-            <li style=--i:7>optimize.</li>
-            <li style=--i:8>ship.</li>
-            <li style=--i:9>prompt.</li>
-            <li style=--i:10>collaborate.</li>
-            <li style=--i:11>create.</li>
-            <li style=--i:12>transform.</li>
-            <li style=--i:13>automate.</li>
-            <li style=--i:14>innovate.</li>
-            <li style=--i:15>test.</li>
-            <li style=--i:16>analyze.</li>
-            <li style=--i:17>scale.</li>
-            <li style=--i:18>integrate.</li>
-            <li style=--i:19>migrate.</li>
-            <li style=--i:20>secure.</li>
-            <li style=--i:21>deploy.</li>
-            <li style=--i:22>measure.</li>
-            <li style=--i:23>convert.</li>
-            <li style=--i:24>engage.</li>
-            <li style=--i:25>monetize.</li>
-            <li style=--i:26>accelerate.</li>
-            <li style=--i:27>architect.</li>
-            <li style=--i:28>refactor.</li>
-            <li style=--i:29>strategize.</li>
-            <li style=--i:30>consult.</li>
-            <li style=--i:31>streamline.</li>
-            <li style=--i:32>empower.</li>
-            <li style=--i:33>grow.</li>
-            <li style=--i:34>succeed.</li>
-        </ul>
-    </section>
-    <section style="flex-direction:column">
-      <h2 class="fluid">now let's!</h2>
-      <!--<span style="display:block; font size:15px">info@serhandemirel.com</span>-->
-      <div class="social-links">
-            <a href="mailto:info@serhandemirel.com" class="social-link" id="QuickMail" aria-label="Email me">
-                <i data-lucide="mail" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/serhandemirel/" class="social-link" target="_blank" rel="noopener noreferrer" id="QuickLinkedin" aria-label="Visit LinkedIn profile">
-                <i data-lucide="linkedin" aria-hidden="true"></i>
-            </a>
-            <a href="https://wa.me/+905322702736" class="social-link" target="_blank" rel="noopener noreferrer" id="QuickWhatsapp" aria-label="Contact on WhatsApp">
-                <i data-lucide="message-circle" aria-hidden="true"></i>
-            </a>
-            <a href="https://t.me/serhandemirel" class="social-link" target="_blank" rel="noopener noreferrer" id="QuickTelegram" aria-label="Contact on Telegram">
-                <i data-lucide="send" aria-hidden="true"></i>
-            </a>
+<body class="selection:bg-fuchsia-500 selection:text-white relative bg-[#050505]">
+
+    <!-- Fullscreen Premium Mobile Menu -->
+    <div id="mobile-fullscreen-menu" class="fixed inset-0 z-[100] bg-[#0a0a0a]/95 backdrop-blur-3xl opacity-0 pointer-events-none transition-all duration-500 flex flex-col justify-center items-center">
+        <div id="mobile-menu-content" class="flex flex-col gap-10 text-center scale-90 translate-y-8 opacity-0 transition-all duration-500 delay-100 w-full px-6">
+            <a href="#expertise" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors">Expertise</a>
+            <a href="#portfolio" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors">Work</a>
+            <a href="#insights" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors">Insights</a>
+            <a href="#contact" class="mobile-link mt-8 py-5 w-full rounded-full bg-white text-black text-2xl font-bold hover:bg-gray-200 transition-colors">Let's Talk</a>
+        </div>
+    </div>
+
+    <!-- Floating Glass Navbar -->
+    <nav id="main-nav" class="fixed top-6 left-1/2 -translate-x-1/2 z-[110] w-[90%] max-w-4xl rounded-full bg-white/5 backdrop-blur-xl border border-white/10 px-6 py-4 flex justify-between items-center transition-all duration-300">
+        <a href="#" class="text-xl font-extrabold tracking-tighter cursor-pointer text-white relative z-20">SD.</a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+            <a href="#expertise" class="hover:text-white transition-colors">Expertise</a>
+            <a href="#portfolio" class="hover:text-white transition-colors">Work</a>
+            <a href="#insights" class="hover:text-white transition-colors">Insights</a>
+            <a href="#contact" class="px-5 py-2 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none relative w-8 h-8 z-[120] flex items-center justify-center bg-transparent">
+            <!-- Hamburger Icon -->
+            <svg id="icon-menu" class="w-6 h-6 absolute transition-all duration-300 transform rotate-0 opacity-100 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <!-- Close Icon -->
+            <svg id="icon-close" class="w-6 h-6 absolute transition-all duration-300 transform -rotate-90 opacity-0 scale-50 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+    </nav>
+
+    <!-- 1. Hero Section (with Paritcles) -->
+    <header id="hero" class="relative h-screen w-full flex flex-col justify-center items-center text-center px-4 overflow-hidden border-b border-white/5">
+        <!-- Parçacık Canvası -->
+        <canvas id="particle-canvas" class="absolute inset-0 z-0 opacity-60 pointer-events-auto"></canvas>
+        
+        <!-- Güçlendirilmiş Hero Ambient Glow (Contact tonlarında) -->
+        <div class="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-purple-900/30 blur-[150px] pointer-events-none z-0"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-fuchsia-900/20 blur-[120px] pointer-events-none z-0"></div>
+        
+        <div class="relative z-10 hero-content mt-[-5vh]">
+            <!-- Giriş Rozeti -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-fuchsia-500"></span>
+                </span>
+                <span class="text-xs font-semibold text-gray-300 tracking-wider uppercase">Engineering the digital future</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-4 md:mb-6 leading-tight text-white">
+                Serhan Demirel
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-400 font-light max-w-2xl mx-auto">
+                Digital Solutions Provider
+            </p>
+        </div>
+        
+        <div class="absolute bottom-12 flex flex-col items-center opacity-60 hero-scroll z-10">
+            <span class="text-xs tracking-widest uppercase mb-3 text-gray-400 font-medium">Explore</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-transparent via-white to-transparent animate-pulse"></div>
+        </div>
+    </header>
+
+    <!-- 2. Dynamic Words Section -->
+    <section id="dynamic-words-section" class="relative w-full min-h-screen bg-[#050505] overflow-hidden">
+        <!-- Ambient Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] rounded-full bg-pink-900/10 blur-[150px] pointer-events-none z-0"></div>
+        
+        <div id="dynamic-words-content" class="relative z-10 h-screen w-full flex items-center justify-center px-4">
+            <div class="text-4xl md:text-6xl lg:text-8xl font-bold flex flex-wrap justify-center items-center gap-x-3 md:gap-x-5 text-center">
+                <span class="text-gray-100">We can</span>
+                <div class="word-mask">
+                    <div id="word-slider" class="word-slider-inner gradient-text">
+                        <!-- JS Injects Words Here -->
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-  </main>
-  <footer>
-    <p>Serhan Demirel, Digital Solution Consultant &copy; <script>document.write(new Date().getFullYear())</script></p>
-  </footer>
-  <a class="logo-link" href="." aria-label="Home">
-    <img src="img/SD-logo-75px-white-transparent.webp" alt="Serhan Demirel Logo" width="75" height="75" loading="lazy">
-  </a>
-  
-  <!-- Initialize icons -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.lucide?.createIcons) {
-        window.lucide.createIcons();
-      }
-    });
-  </script>
 
-  <!-- Defer loading of icons with better error handling -->
-  <script defer src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js" 
-          onerror="console.error('Failed to load Lucide icons');"></script>
-  <script>
-    const initIcons = () => {
-      try {
-        if (window.lucide?.createIcons) {
-          window.lucide.createIcons();
-          console.log('Icons initialized successfully');
+    <!-- 3. Core Expertise Section -->
+    <section id="expertise" class="relative py-24 md:py-32 bg-[#080808] border-t border-white/5 z-10 overflow-hidden">
+        <!-- Ambient Glow -->
+        <div class="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-900/10 blur-[150px] pointer-events-none z-0"></div>
+        
+        <div class="relative z-10 w-full">
+            <!-- Başlık ve Yönlendirme (Kapsayıcı içinde) -->
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                <div>
+                    <h2 class="text-sm font-bold tracking-[0.2em] uppercase text-purple-500 mb-4">Core Expertise</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-white max-w-2xl">Building scalable digital foundations for tomorrow.</h3>
+                </div>
+                
+                <!-- Modern Navigation Controls -->
+                <div class="flex items-center gap-4 relative z-20 self-end md:self-auto">
+                    <button id="scroll-prev" class="w-12 h-12 rounded-full glass flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all duration-300 group cursor-pointer">
+                        <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="scroll-next" class="w-12 h-12 rounded-full glass flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all duration-300 group cursor-pointer">
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Horizontal Slider Container (Full Bleed - Ekrandan taşar) -->
+            <div class="relative w-full">
+                <!-- İlk karta baştan offset vermek için padding (px-6 md:px-8) burada başlar, sağ taraf sınırsızdır (pr-6) -->
+                <div id="expertise-slider" class="flex gap-6 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing pb-8 snap-x snap-mandatory px-6 md:px-[calc((100vw-80rem)/2+2rem)] xl:px-[calc((100vw-80rem)/2+2rem)]">
+                    
+                    <!-- Card 1: Marketing & Growth -->
+                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                        <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3">Marketing & Growth</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">Driving measurable growth and expanding reach through data-driven digital marketing strategies.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Sales Optimization</span>
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Lead Gen</span>
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Digital Marketing</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Digital Products -->
+                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                        <div class="w-12 h-12 bg-purple-500/20 text-purple-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3">Digital Products</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">Architecting and building modern web applications, platforms, and high-converting landing pages.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Web Apps</span>
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Digital Product</span>
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Landing Pages</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: AI & Automation -->
+                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                        <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3">AI & Automation</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">Streamlining workflows and accelerating business processes using intelligent AI solutions and smart automation.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">AI Solutions</span>
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Automation</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Strategy & Visibility -->
+                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                        <div class="w-12 h-12 bg-pink-500/20 text-pink-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012-2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3">Strategy & Visibility</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">Elevating brand presence through deep competitor analysis and aggressive search engine optimization.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">SEO</span>
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Competitor Analysis</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Transformation & Ed -->
+                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                        <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white mb-3">Transformation & Ed</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">Guiding companies through digital transformation and providing corporate training for sustainable growth.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Digital Transformation</span>
+                            <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Training & Ed</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Logo Showcase (Faded Edges & 3 Rows) -->
+    <section id="logo-showcase" class="relative py-24 bg-[#080808] overflow-hidden flex flex-col items-center border-y border-white/5 z-10">
+        <p class="text-xs tracking-[0.4em] uppercase text-gray-500 font-medium mb-16 relative z-10 px-4 text-center">Trusted by Forward-Thinking Brands</p>
+        
+        <div class="relative w-[130vw] -left-[15vw] -rotate-3 flex flex-col gap-12 mask-edges pointer-events-auto">
+            <!-- Row 1 -->
+            <div class="logo-row-1 flex items-center justify-start gap-16 whitespace-nowrap w-max px-12">
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><path d="M50 10A40 40 0 1 0 50 90A40 40 0 1 0 50 10ZM50 30A20 20 0 1 1 50 70A20 20 0 1 1 50 30Z"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><polygon points="50,10 90,90 10,90" fill-opacity="0.5"/><rect x="30" y="30" width="40" height="40" /></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><rect x="10" y="20" width="80" height="15" /><rect x="10" y="45" width="50" height="15" /><rect x="10" y="70" width="65" height="15" /></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><polygon points="25,25 50,0 75,25 50,50"/><polygon points="25,75 50,50 75,75 50,100"/><polygon points="0,50 25,25 50,50 25,75"/></svg>
+                <!-- Dublicates for infinite loop feel -->
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><path d="M50 10A40 40 0 1 0 50 90A40 40 0 1 0 50 10ZM50 30A20 20 0 1 1 50 70A20 20 0 1 1 50 30Z"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><polygon points="50,10 90,90 10,90" fill-opacity="0.5"/><rect x="30" y="30" width="40" height="40" /></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><rect x="10" y="20" width="80" height="15" /><rect x="10" y="45" width="50" height="15" /><rect x="10" y="70" width="65" height="15" /></svg>
+            </div>
+            <!-- Row 2 -->
+            <div class="logo-row-2 flex items-center justify-start gap-16 whitespace-nowrap w-max px-12 ml-[-20%]">
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><polygon points="25,25 50,0 75,25 50,50"/><polygon points="25,75 50,50 75,75 50,100"/><polygon points="0,50 25,25 50,50 25,75"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><path d="M50 10A40 40 0 1 0 50 90A40 40 0 1 0 50 10ZM50 30A20 20 0 1 1 50 70A20 20 0 1 1 50 30Z"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><rect x="10" y="20" width="80" height="15" /><rect x="10" y="45" width="50" height="15" /><rect x="10" y="70" width="65" height="15" /></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><polygon points="25,25 50,0 75,25 50,50"/><polygon points="25,75 50,50 75,75 50,100"/><polygon points="0,50 25,25 50,50 25,75"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><path d="M50 10A40 40 0 1 0 50 90A40 40 0 1 0 50 10ZM50 30A20 20 0 1 1 50 70A20 20 0 1 1 50 30Z"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><rect x="10" y="20" width="80" height="15" /><rect x="10" y="45" width="50" height="15" /><rect x="10" y="70" width="65" height="15" /></svg>
+            </div>
+            <!-- Row 3 -->
+            <div class="logo-row-1 flex items-center justify-start gap-16 whitespace-nowrap w-max px-12 ml-[-10%]">
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><path d="M50 10A40 40 0 1 0 50 90A40 40 0 1 0 50 10ZM50 30A20 20 0 1 1 50 70A20 20 0 1 1 50 30Z"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><polygon points="50,10 90,90 10,90" fill-opacity="0.5"/><rect x="30" y="30" width="40" height="40" /></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><rect x="10" y="20" width="80" height="15" /><rect x="10" y="45" width="50" height="15" /><rect x="10" y="70" width="65" height="15" /></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><polygon points="25,25 50,0 75,25 50,50"/><polygon points="25,75 50,50 75,75 50,100"/><polygon points="0,50 25,25 50,50 25,75"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><path d="M50 10A40 40 0 1 0 50 90A40 40 0 1 0 50 10ZM50 30A20 20 0 1 1 50 70A20 20 0 1 1 50 30Z"/></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><polygon points="50,10 90,90 10,90" fill-opacity="0.5"/><rect x="30" y="30" width="40" height="40" /></svg>
+                <svg viewBox="0 0 100 100" class="h-10 w-auto fill-current text-white/20 hover:text-white transition-colors duration-300"><rect x="10" y="20" width="80" height="15" /><rect x="10" y="45" width="50" height="15" /><rect x="10" y="70" width="65" height="15" /></svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Portfolio Section -->
+    <section id="portfolio" class="relative py-24 md:py-32 bg-[#050505] border-t border-white/5 z-10 overflow-hidden">
+        <!-- Ambient Glow -->
+        <div class="absolute bottom-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-purple-900/10 blur-[150px] pointer-events-none z-0"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+                <div>
+                    <h2 class="text-sm font-bold tracking-[0.2em] uppercase text-blue-500 mb-4">Selected Work</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-white">Featured Projects</h3>
+                </div>
+                
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-2" id="portfolio-filters">
+                    <button class="filter-btn active px-4 py-2 rounded-full border border-white/20 bg-white text-black text-sm font-medium transition-colors" data-filter="all">All</button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-white/20 text-white hover:bg-white/10 text-sm font-medium transition-colors" data-filter="fintech">Fintech</button>
+                    <button class="filter-btn px-4 py-2 rounded-full border border-white/20 text-white hover:bg-white/10 text-sm font-medium transition-colors" data-filter="ecommerce">E-Commerce</button>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="portfolio-grid">
+                <!-- Proje 1 -->
+                <div class="portfolio-item group relative rounded-3xl overflow-hidden glass aspect-[4/3] cursor-pointer" data-category="fintech europe">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" alt="Fintech Project" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-all duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-blue-400 text-sm font-bold mb-2">Fintech / London</p>
+                            <h4 class="text-2xl md:text-3xl font-bold text-white mb-2">Global Payment Gateway</h4>
+                            <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Redesigned the entire payment flow increasing conversion by 24%.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Proje 2 -->
+                <div class="portfolio-item group relative rounded-3xl overflow-hidden glass aspect-[4/3] cursor-pointer" data-category="ecommerce">
+                    <img src="https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=1200&auto=format&fit=crop" alt="E-Commerce Project" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-all duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-purple-400 text-sm font-bold mb-2">E-Commerce / Turkey</p>
+                            <h4 class="text-2xl md:text-3xl font-bold text-white mb-2">Marketplace Scale-up</h4>
+                            <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Architected a scalable digital platform handling 100k+ daily users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Insights Section -->
+    <section id="insights" class="relative py-24 md:py-32 bg-[#050505] z-10 overflow-hidden">
+        <!-- Ambient Glow -->
+        <div class="absolute top-[20%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-fuchsia-900/10 blur-[150px] pointer-events-none z-0"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-sm font-bold tracking-[0.2em] uppercase text-pink-500 mb-4">Insights</h2>
+            <h3 class="text-3xl md:text-5xl font-bold text-white mb-12">Latest Thoughts</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <a href="#" class="group block">
+                    <div class="overflow-hidden rounded-3xl mb-6 glass relative aspect-video">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" alt="AI in 2025" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    </div>
+                    <p class="text-gray-400 text-sm mb-2 font-medium">Technology • 5 min read</p>
+                    <h4 class="text-2xl font-bold text-white group-hover:text-pink-400 transition-colors duration-300">The Role of AI in Enterprise Architecture in 2026</h4>
+                </a>
+                <a href="#" class="group block">
+                    <div class="overflow-hidden rounded-3xl mb-6 glass relative aspect-video">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Cloud Migration" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    </div>
+                    <p class="text-gray-400 text-sm mb-2 font-medium">Strategy • 8 min read</p>
+                    <h4 class="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">Why Digital Transformations Fail and How to Succeed</h4>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer / Contact Section -->
+    <footer id="contact" class="relative bg-[#020202] text-white pt-24 pb-8 overflow-hidden rounded-t-[3rem] md:rounded-t-[5rem] border-t border-white/10 z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] -mt-6">
+        <!-- Devasa Footer Glow -->
+        <div class="absolute bottom-[-30%] left-[50%] -translate-x-1/2 w-[80vw] h-[80vw] rounded-full bg-purple-600/10 blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col min-h-[60vh] justify-between">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12">
+                <div class="max-w-3xl">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                        </div>
+                        <span class="text-gray-400 text-xs md:text-sm font-semibold tracking-[0.2em] uppercase">Status: Ready to Innovate</span>
+                    </div>
+                    <h2 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-6">
+                        Let's build<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">the future.</span>
+                    </h2>
+                </div>
+                
+                <div class="flex flex-col items-start md:items-end gap-6 text-right w-full md:w-auto">
+                    <div class="glass rounded-3xl p-6 w-full md:w-64 text-left md:text-right border-white/5">
+                        <p class="text-gray-500 text-xs font-bold tracking-widest uppercase mb-2">Local Time</p>
+                        <p id="footer-time" class="text-3xl font-light tracking-tight text-white font-mono">--:--:--</p>
+                        <p class="text-gray-400 text-sm mt-1">Istanbul, TR</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interaktif İletişim Butonları -->
+            <div class="w-full mt-16 mb-20 flex flex-wrap gap-4">
+                <a href="/cdn-cgi/l/email-protection#1e777078715e6d7b6c767f707a7b73776c7b72307d7173216d6b7c747b7d6a23507b693e4e6c71747b7d6a" class="flex-1 min-w-[250px] group relative overflow-hidden rounded-full p-[1px]">
+                    <span class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    <div class="relative bg-[#050505] px-8 py-6 rounded-full flex items-center justify-between transition-transform duration-300 group-hover:scale-[0.99]">
+                        <span class="text-xl font-bold">Start a Project</span>
+                        <svg class="w-6 h-6 text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </div>
+                </a>
+                
+                <!-- Devasa WhatsApp Butonu -->
+                <a href="https://wa.me/905322702736?text=Hello%20Serhan," target="_blank" class="flex-1 min-w-[250px] group relative overflow-hidden rounded-full p-[1px]">
+                    <span class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-50 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    <div class="relative bg-[#050505] px-8 py-6 rounded-full flex items-center justify-between transition-transform duration-300 group-hover:scale-[0.99]">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-6 h-6 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                            <span class="text-xl font-bold">WhatsApp</span>
+                        </div>
+                        <svg class="w-6 h-6 text-gray-400 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </div>
+                </a>
+
+                <a href="/cdn-cgi/l/email-protection#c8a1a6aea788bbadbaa0a9a6acada5a1baada4e6aba7a5f7bbbdaaa2adabbcf58ba7a6bbbda4bca1a6af" class="flex-1 min-w-[250px] glass px-8 py-6 rounded-full flex items-center justify-between hover:bg-white/10 transition-colors border-white/5">
+                    <span class="text-xl font-bold">Email Me</span>
+                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/10 text-gray-500 text-sm font-medium">
+                <p>© <span id="current-year"></span> Serhan Demirel. All rights reserved.</p>
+                <div class="flex gap-8">
+                    <a href="https://linkedin.com/in/serhandemirel" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+                    <a href="https://x.com/serhandemirel" target="_blank" class="hover:text-white transition-colors">Twitter / X</a>
+                    <a href="https://instagram.com/serhandemirel" target="_blank" class="hover:text-white transition-colors">Instagram</a>
+                </div>
+                <button id="back-to-top" class="hover:text-white transition-colors flex items-center gap-2 group cursor-pointer">
+                    Back to top
+                    <svg class="w-4 h-4 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Dual Contact Bar (Mobilde ve masaüstünde scroll edince çıkar) -->
+    <div id="sticky-contact" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] translate-y-[150%] opacity-0 transition-all duration-500 ease-out pointer-events-none flex gap-3">
+        <a href="https://wa.me/905322702736?text=Hello%20Serhan," target="_blank" class="pointer-events-auto group flex items-center gap-2 bg-[#050505] border border-emerald-500/30 px-4 md:px-5 py-3 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:border-emerald-500/70 hover:bg-emerald-500/10 transition-all hover:scale-105">
+            <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            <span class="text-sm font-semibold text-emerald-400 whitespace-nowrap hidden md:block">WhatsApp</span>
+        </a>
+        <a href="#contact" class="pointer-events-auto group flex items-center gap-3 bg-white/10 border border-white/20 backdrop-blur-2xl px-6 py-3 rounded-full shadow-2xl hover:bg-white/20 transition-all hover:scale-105">
+            <div class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+            </div>
+            <span class="text-sm font-semibold text-white whitespace-nowrap">Start a Project</span>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        function initPortfolio() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- 1. PARTICLE SYSTEM (Canvas tabanlı performanslı ağ efekti) ---
+            const canvas = document.getElementById('particle-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height, particles;
+
+                function initParticles() {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                    particles = [];
+                    // Mobilde daha az, masaüstünde daha çok parçacık (Performans için)
+                    const particleCount = window.innerWidth < 768 ? 70 : 180;
+                    
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push({
+                            x: Math.random() * width,
+                            y: Math.random() * height,
+                            vx: (Math.random() - 0.5) * 0.5,
+                            vy: (Math.random() - 0.5) * 0.5,
+                            radius: Math.random() * 1.5 + 0.5
+                        });
+                    }
+                }
+
+                let mouse = { x: null, y: null };
+                window.addEventListener('mousemove', e => {
+                    mouse.x = e.x;
+                    mouse.y = e.y;
+                });
+
+                function animateParticles() {
+                    requestAnimationFrame(animateParticles);
+                    ctx.clearRect(0, 0, width, height);
+                    
+                    particles.forEach(p => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        
+                        // Ekran sınırlarından sekme
+                        if (p.x < 0 || p.x > width) p.vx *= -1;
+                        if (p.y < 0 || p.y > height) p.vy *= -1;
+                        
+                        // Noktaları çiz
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+                        ctx.fill();
+                        
+                        // Noktalar arası çizgiler (Constellation efekti)
+                        particles.forEach(p2 => {
+                            const dx = p.x - p2.x;
+                            const dy = p.y - p2.y;
+                            const dist = Math.sqrt(dx*dx + dy*dy);
+                            
+                            if (dist < 120) {
+                                ctx.beginPath();
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(p2.x, p2.y);
+                                ctx.strokeStyle = `rgba(255,255,255,${0.1 - dist/1200})`;
+                                ctx.stroke();
+                            }
+                        });
+                        
+                        // Fare etkileşimi (Mouse repulsion & connection)
+                        if (mouse.x) {
+                            const dx = p.x - mouse.x;
+                            const dy = p.y - mouse.y;
+                            const dist = Math.sqrt(dx*dx + dy*dy);
+                            if (dist < 150) {
+                                ctx.beginPath();
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(mouse.x, mouse.y);
+                                // İmlece bağlanan çizgiler pembe/fuşya tonunda parlar
+                                ctx.strokeStyle = `rgba(217, 70, 239, ${0.25 - dist/600})`; 
+                                ctx.stroke();
+                            }
+                        }
+                    });
+                }
+                
+                initParticles();
+                animateParticles();
+                window.addEventListener('resize', initParticles);
+            }
+
+            // --- 2. DYNAMIC WORDS (We can... Slot efekti) ---
+            const words = [
+                "design", "prototype", "solve", "build", "develop", 
+                "debug", "learn", "optimize", "ship", "prompt", 
+                "collaborate", "create", "transform", "automate", 
+                "innovate", "scale", "integrate", "deploy", "succeed"
+            ];
+
+            const sliderInner = document.getElementById('word-slider');
+            if (sliderInner) {
+                // Kelimeleri HTML'e enjekte et
+                words.forEach(word => {
+                    const div = document.createElement('div');
+                    div.className = 'word-item';
+                    div.innerText = word + ".";
+                    sliderInner.appendChild(div);
+                });
+
+                const totalWords = words.length;
+                // Sona kadar kaydırma miktarı
+                const translationAmount = -100 * ((totalWords - 1) / totalWords);
+
+                gsap.to(sliderInner, {
+                    yPercent: translationAmount,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#dynamic-words-section",
+                        start: "top top", 
+                        end: "+=2500", // Scroll uzunluğu
+                        pin: "#dynamic-words-content", 
+                        scrub: 1, // Yumuşatma oranı
+                        snap: {
+                            snapTo: 1 / (totalWords - 1),
+                            duration: 0.2,
+                            ease: "power1.inOut"
+                        }
+                    }
+                });
+            }
+
+            // --- 3. EXPERTISE DRAG & BUTTON SCROLL ---
+            const expertiseSlider = document.getElementById('expertise-slider');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            if(expertiseSlider) {
+                // Sürükle (Drag) mekanizması
+                expertiseSlider.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    expertiseSlider.classList.remove('snap-mandatory'); 
+                    startX = e.pageX - expertiseSlider.offsetLeft;
+                    scrollLeft = expertiseSlider.scrollLeft;
+                });
+                
+                const stopDrag = () => {
+                    if(!isDown) return;
+                    isDown = false;
+                    expertiseSlider.classList.add('snap-mandatory'); 
+                };
+                
+                expertiseSlider.addEventListener('mouseleave', stopDrag);
+                expertiseSlider.addEventListener('mouseup', stopDrag);
+                
+                expertiseSlider.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - expertiseSlider.offsetLeft;
+                    const walk = (x - startX) * 2; // Sürükleme hızı çarpanı
+                    expertiseSlider.scrollLeft = scrollLeft - walk;
+                });
+
+                // Ok butonları (Arrow controls)
+                const prevBtn = document.getElementById('scroll-prev');
+                const nextBtn = document.getElementById('scroll-next');
+                if (prevBtn && nextBtn) {
+                    // Mobilde 82vw, masaüstünde 424px kaydır
+                    const getScrollAmount = () => window.innerWidth < 768 ? window.innerWidth * 0.82 : 424;
+                    
+                    prevBtn.addEventListener('click', () => {
+                        expertiseSlider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                    });
+                    nextBtn.addEventListener('click', () => {
+                        expertiseSlider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                    });
+                }
+            }
+
+            // --- 4. LOGO MARQUEE (GSAP ile zıt yönlü sonsuz kayış) ---
+            if (document.querySelector(".logo-row-1")) {
+                gsap.to(".logo-row-1", {
+                    xPercent: -20,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#logo-showcase",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                });
+
+                gsap.to(".logo-row-2", {
+                    xPercent: 20, 
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#logo-showcase",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                });
+            }
+
+            // --- 5. PORTFOLIO FILTERS ---
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            if(filterBtns.length > 0) {
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Aktif buton stilini değiştir
+                        filterBtns.forEach(b => {
+                            b.classList.remove('bg-white', 'text-black');
+                            b.classList.add('text-white');
+                        });
+                        btn.classList.add('bg-white', 'text-black');
+                        btn.classList.remove('text-white');
+
+                        const filter = btn.getAttribute('data-filter');
+
+                        // Portfolyo öğelerini filtrele
+                        portfolioItems.forEach(item => {
+                            if (filter === 'all' || item.getAttribute('data-category').includes(filter)) {
+                                item.style.display = 'block';
+                                gsap.fromTo(item, {opacity: 0, scale: 0.95}, {opacity: 1, scale: 1, duration: 0.4});
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+            }
+
+            // --- 6. PREMIUM FULLSCREEN MOBILE MENU ---
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            const fullscreenMenu = document.getElementById('mobile-fullscreen-menu');
+            const menuContent = document.getElementById('mobile-menu-content');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMobileMenuOpen = false;
+
+            function toggleMobileMenu() {
+                isMobileMenuOpen = !isMobileMenuOpen;
+                
+                if (isMobileMenuOpen) {
+                    // Açılış (Overlay & İçerik)
+                    fullscreenMenu.classList.remove('opacity-0', 'pointer-events-none');
+                    fullscreenMenu.classList.add('opacity-100', 'pointer-events-auto');
+                    
+                    menuContent.classList.remove('translate-y-8', 'opacity-0', 'scale-90');
+                    menuContent.classList.add('translate-y-0', 'opacity-100', 'scale-100');
+                    
+                    // İkon Dönüşümü (Hamburger -> X)
+                    iconMenu.classList.add('opacity-0', 'rotate-90', 'scale-50');
+                    iconMenu.classList.remove('opacity-100', 'rotate-0');
+                    iconClose.classList.remove('opacity-0', '-rotate-90', 'scale-50');
+                    iconClose.classList.add('opacity-100', 'rotate-0', 'scale-100');
+                    
+                    document.body.style.overflow = 'hidden'; // Arkaplan scroll'u kilitle
+                } else {
+                    // Kapanış
+                    fullscreenMenu.classList.add('opacity-0', 'pointer-events-none');
+                    fullscreenMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                    
+                    menuContent.classList.add('translate-y-8', 'opacity-0', 'scale-90');
+                    menuContent.classList.remove('translate-y-0', 'opacity-100', 'scale-100');
+                    
+                    // İkon Dönüşümü (X -> Hamburger)
+                    iconClose.classList.remove('opacity-100', 'rotate-0', 'scale-100');
+                    iconClose.classList.add('opacity-0', '-rotate-90', 'scale-50');
+                    iconMenu.classList.remove('opacity-0', 'rotate-90', 'scale-50');
+                    iconMenu.classList.add('opacity-100', 'rotate-0');
+                    
+                    document.body.style.overflow = ''; // Arkaplan kilidini aç
+                }
+            }
+
+            if (mobileBtn && fullscreenMenu) {
+                mobileBtn.addEventListener('click', toggleMobileMenu);
+                // Linke tıklanınca menüyü kapat
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', toggleMobileMenu);
+                });
+            }
+
+            // --- 7. FLOATING NAVBAR HIDE/SHOW ON SCROLL ---
+            const nav = document.getElementById('main-nav');
+            let lastScroll = 0;
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                // Sadece aşağı doğru ve belirli bir miktar kaydırıldığında gizle
+                if (currentScroll > 150 && currentScroll > lastScroll) {
+                    if (nav && !isMobileMenuOpen) nav.style.transform = 'translate(-50%, -150%)';
+                } else {
+                    if (nav) nav.style.transform = 'translate(-50%, 0)';
+                }
+                lastScroll = currentScroll;
+            });
+
+            // --- 8. FLOATING DUAL CONTACT BAR (Scroll tetikleyici) ---
+            const stickyContact = document.getElementById('sticky-contact');
+            if (stickyContact) {
+                // Expertise bölümüne gelince göster
+                ScrollTrigger.create({
+                    trigger: "#expertise",
+                    start: "top 80%",
+                    onEnter: () => stickyContact.classList.remove('translate-y-[150%]', 'opacity-0'),
+                    onLeaveBack: () => stickyContact.classList.add('translate-y-[150%]', 'opacity-0'),
+                });
+                // Contact bölümüne (Footer'a) gelince gizle (çakışmasın diye)
+                ScrollTrigger.create({
+                    trigger: "#contact",
+                    start: "top 90%",
+                    onEnter: () => stickyContact.classList.add('translate-y-[150%]', 'opacity-0'),
+                    onLeaveBack: () => stickyContact.classList.remove('translate-y-[150%]', 'opacity-0'),
+                });
+            }
+
+            // --- 9. UTILITIES (Saat, Yıl, Yukarı Çık) ---
+            const yearEl = document.getElementById('current-year');
+            if(yearEl) yearEl.textContent = new Date().getFullYear();
+            
+            const backToTop = document.getElementById('back-to-top');
+            if(backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            function updateTime() {
+                const timeString = new Date().toLocaleTimeString('en-US', {
+                    timeZone: 'Europe/Istanbul', hour12: false,
+                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                });
+                const timeElement = document.getElementById('footer-time');
+                if(timeElement) timeElement.textContent = timeString + ' TRT';
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
         }
-      } catch (error) {
-        console.error('Error initializing icons:', error);
-      }
-    };
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initIcons);
-    } else {
-      initIcons();
-    }
-
-    // Re-attempt icon initialization if loaded after DOMContentLoaded
-    document.addEventListener('lucide-loaded', initIcons);
-  </script>
+        // DOM tamamen hazır olduğunda çalıştır (Hataları önlemek için)
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setTimeout(initPortfolio, 1);
+        } else {
+            document.addEventListener("DOMContentLoaded", initPortfolio);
+        }
+    </script>
 </body>
 </html>
