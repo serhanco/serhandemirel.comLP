@@ -111,10 +111,10 @@
 
         /* Smooth Continuous Infinite Marquee */
         .marquee-row-left {
-            animation: scroll-marquee-left 50s linear infinite;
+            animation: scroll-marquee-left var(--marquee-speed, 50s) linear infinite;
         }
         .marquee-row-right {
-            animation: scroll-marquee-right 50s linear infinite;
+            animation: scroll-marquee-right var(--marquee-speed, 50s) linear infinite;
         }
         /* Optional: Pause on hover so users can inspect logos */
         #marquee-container:hover .marquee-row-left,
@@ -830,7 +830,11 @@
       const ROWS_DESKTOP = 5;
       const ROWS_MOBILE = 6;
 
-      // 3. LOGO SIRALAMASI
+      // 3. KAYDIRMA HIZI AYARI (Saniye cinsinden - Sayı küçüldükçe hızlanır, büyüdükçe yavaşlar)
+      const SPEED_DESKTOP = 50; 
+      const SPEED_MOBILE = 30; 
+
+      // 4. LOGO SIRALAMASI
       const BRAND_LOGOS = [
           { src: 'acibadem.svg', alt: 'Acıbadem' },
           { src: 'florence.png', alt: 'Florence Nightingale' },
@@ -872,6 +876,10 @@
               // Determine if mobile (width < 768px matches standard Tailwind md breakpoint)
               const isMobile = window.innerWidth < 768;
               const targetRows = isMobile ? ROWS_MOBILE : ROWS_DESKTOP;
+              const targetSpeed = isMobile ? SPEED_MOBILE : SPEED_DESKTOP;
+              
+              // Apply dynamic speed setting
+              container.style.setProperty('--marquee-speed', `${targetSpeed}s`);
               
               // Only re-render if the row count actually changed
               if (targetRows === currentRows) return;
