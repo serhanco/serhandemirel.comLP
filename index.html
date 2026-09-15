@@ -111,28 +111,18 @@
 
         /* Native Scroll-driven Animations for Logo Marquee (Progressive Enhancement) */
         @supports (animation-timeline: view()) {
-            #logo-showcase {
-                view-timeline-name: --logo-showcase;
+            #brands {
+                view-timeline-name: --brands-section;
                 view-timeline-axis: block;
             }
-            .logo-row-1 {
+            .marquee-row-left {
                 animation: scroll-marquee-left linear both;
-                animation-timeline: --logo-showcase;
+                animation-timeline: --brands-section;
                 animation-range: entry exit;
             }
-            .logo-row-2 {
+            .marquee-row-right {
                 animation: scroll-marquee-right linear both;
-                animation-timeline: --logo-showcase;
-                animation-range: entry exit;
-            }
-            .logo-row-3 {
-                animation: scroll-marquee-left linear both;
-                animation-timeline: --logo-showcase;
-                animation-range: entry exit;
-            }
-            .logo-row-2 {
-                animation: scroll-marquee-right linear both;
-                animation-timeline: --logo-showcase;
+                animation-timeline: --brands-section;
                 animation-range: entry exit;
             }
             @keyframes scroll-marquee-left {
@@ -176,6 +166,7 @@ to { transform: translateX(0); }
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
             <a href="#expertise" class="hover:text-white transition-colors">Expertise</a>
+            <a href="#brands" class="hover:text-white transition-colors">Brands</a>
             <!-- <a href="#portfolio" class="hover:text-white transition-colors">Work</a> -->
             <!-- <a href="#insights" class="hover:text-white transition-colors">Insights</a> -->
             <a href="#contact" class="px-5 py-2 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors">Contact</a>
@@ -342,25 +333,15 @@ to { transform: translateX(0); }
     </section>
 
     <!-- 4. Logo Showcase (Faded Edges & 3 Rows) -->
-    <section id="logo-showcase" class="relative py-24 bg-[#080808] overflow-hidden flex flex-col items-center border-y border-white/5 z-10">
-        <p class="text-xs tracking-[0.4em] uppercase text-gray-500 font-medium mb-16 relative z-10 px-4 text-center">Trusted by Forward-Thinking Brands</p>
-        
-        <!-- Faded Edges using CSS mask-image -->
-        <div class="w-full max-w-[1400px] flex flex-col gap-12 mask-edges pointer-events-auto">
-            
-            <!-- Row 1: Left Scroll -->
-            <div class="logo-row-1 flex items-center justify-start gap-16 whitespace-nowrap w-max px-8">
-            </div>
-
-            <!-- Row 2: Right Scroll -->
-            <div class="logo-row-2 flex items-center justify-start gap-16 whitespace-nowrap w-max px-8 ml-[-20%]">
-            </div>
-            
-            <!-- Row 3: Left Scroll -->
-            <div class="logo-row-3 flex items-center justify-start gap-16 whitespace-nowrap w-max px-8 ml-[-10%]">
-            </div>
-
+    <section id="brands" class="relative py-24 md:py-32 overflow-hidden bg-[#050505] border-t border-white/5">
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mb-16 text-center">
+            <h2 class="text-sm font-bold tracking-[0.2em] uppercase text-blue-500 mb-4">Trusted By</h2>
+            <h3 class="text-3xl md:text-5xl font-bold text-white">Global Partners & Brands</h3>
         </div>
+
+        <!-- Faded Edges using CSS mask-image -->
+        <div id="marquee-container" class="w-full max-w-[1400px] mx-auto flex flex-col gap-12 mask-edges pointer-events-auto">
+            <!-- Rows will be injected here by JS -->
         </div>
     </section>
 
@@ -860,7 +841,11 @@ to { transform: translateX(0); }
       // 1. TEMA AYARI
       const LOGO_THEME = 'white'; 
       
-      // 2. LOGO SIRALAMASI
+      // 2. SATIR SAYISI AYARI (Desktop vs Mobil)
+      const ROWS_DESKTOP = 4;
+      const ROWS_MOBILE = 6;
+
+      // 3. LOGO SIRALAMASI
       const BRAND_LOGOS = [
           { src: 'acibadem.svg', alt: 'Acıbadem' },
           { src: 'florence.png', alt: 'Florence Nightingale' },
@@ -886,34 +871,66 @@ to { transform: translateX(0); }
           { src: 'healthcare_diplomacy.png', alt: 'Healthcare Diplomacy' },
           { src: 'meseri_energy.png', alt: 'Meseri Energy' },
           { src: 'iesyazilim.png', alt: 'İES Yazılım' },
-          { src: 'hekim_bilisim.svg', alt: 'Hekim Bilişim' }
+          { src: 'hekim_bilisim.svg', alt: 'Hekim Bilişim' },
+          { src: 'hilal_celik.png', alt: 'Hilal Çelik Halat' }
       ];
 
       document.addEventListener("DOMContentLoaded", () => {
-          const row1 = document.querySelector('.logo-row-1');
-          const row2 = document.querySelector('.logo-row-2');
-          const row3 = document.querySelector('.logo-row-3');
-          
-          if (!row1 || !row2 || !row3) return;
+          const container = document.getElementById('marquee-container');
+          if (!container) return;
 
-          // Logoları 3 satıra böl
-          const third = Math.ceil(BRAND_LOGOS.length / 3);
-          const firstThird = BRAND_LOGOS.slice(0, third);
-          const secondThird = BRAND_LOGOS.slice(third, third * 2);
-          const lastThird = BRAND_LOGOS.slice(third * 2);
+          let currentRows = -1;
 
-          const generateHTML = (logoArray) => {
-              let html = '';
-              logoArray.forEach(logo => {
-                  const folder = LOGO_THEME === 'white' ? 'white' : 'color';
-                  html += `<img src="assets/img/brands/${folder}/${logo.src}" alt="${logo.alt}" class="h-10 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
-              });
-              return html;
+          const renderLogos = () => {
+              // Determine if mobile (width < 768px matches standard Tailwind md breakpoint)
+              const isMobile = window.innerWidth < 768;
+              const targetRows = isMobile ? ROWS_MOBILE : ROWS_DESKTOP;
+              
+              // Only re-render if the row count actually changed
+              if (targetRows === currentRows) return;
+              currentRows = targetRows;
+              
+              container.innerHTML = '';
+              
+              // Math logic: divide array into targetRows chunks
+              const chunk_size = Math.ceil(BRAND_LOGOS.length / targetRows);
+              
+              for (let i = 0; i < targetRows; i++) {
+                  const chunk = BRAND_LOGOS.slice(i * chunk_size, (i + 1) * chunk_size);
+                  if (chunk.length === 0) break; // In case there are more rows than logos
+                  
+                  // Generate HTML for the chunk
+                  let html = '';
+                  chunk.forEach(logo => {
+                      const folder = LOGO_THEME === 'white' ? 'white' : 'color';
+                      html += `<img src="assets/img/brands/${folder}/${logo.src}" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
+                  });
+                  
+                  const rowDiv = document.createElement('div');
+                  // Animation direction alternates
+                  const directionClass = i % 2 === 0 ? 'marquee-row-left' : 'marquee-row-right';
+                  
+                  // Note: CSS negative margin for staggered effect
+                  const marginLeft = i % 2 === 0 ? '' : 'ml-[-20%]';
+                  
+                  rowDiv.className = `${directionClass} flex items-center justify-start gap-12 md:gap-16 whitespace-nowrap w-max px-8 ${marginLeft}`;
+                  
+                  // Duplicate exactly once for perfect infinite marquee
+                  rowDiv.innerHTML = html + html;
+                  
+                  container.appendChild(rowDiv);
+              }
           };
 
-          row1.innerHTML = generateHTML(firstThird) + generateHTML(firstThird);
-          row2.innerHTML = generateHTML(secondThird) + generateHTML(secondThird);
-          row3.innerHTML = generateHTML(lastThird) + generateHTML(lastThird);
+          // Render on load
+          renderLogos();
+          
+          // Re-render efficiently on window resize
+          let resizeTimer;
+          window.addEventListener('resize', () => {
+              clearTimeout(resizeTimer);
+              resizeTimer = setTimeout(renderLogos, 200);
+          });
       });
     </script>
 </body>
