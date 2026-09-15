@@ -109,41 +109,26 @@
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
 
-        /* Native Scroll-driven Animations for Logo Marquee (Progressive Enhancement) */
-        @supports (animation-timeline: view()) {
-            #brands {
-                view-timeline-name: --brands-section;
-                view-timeline-axis: block;
-            }
-            .marquee-row-left {
-                animation: scroll-marquee-left linear both;
-                animation-timeline: --brands-section;
-                animation-range: entry exit;
-            }
-            .marquee-row-right {
-                animation: scroll-marquee-right linear both;
-                animation-timeline: --brands-section;
-                animation-range: entry exit;
-            }
-            @keyframes scroll-marquee-left {
-                from { transform: translateX(0); }
-                to { transform: translateX(-50%); }
-            }
-            @keyframes scroll-marquee-right {
-                from { transform: translateX(-50%); }
-                to { transform: translateX(0); }
-            }
-            .animate-marquee-left {
-                animation: scroll-marquee-left 45s linear infinite;
-            }
-            .animate-marquee-right {
-                animation: scroll-marquee-right 45s linear infinite;
-            }
-            .animate-marquee-left:hover, .animate-marquee-right:hover {
-                animation-play-state: paused;
-            }
-to { transform: translateX(0); }
-            }
+        /* Smooth Continuous Infinite Marquee */
+        .marquee-row-left {
+            animation: scroll-marquee-left 50s linear infinite;
+        }
+        .marquee-row-right {
+            animation: scroll-marquee-right 50s linear infinite;
+        }
+        /* Optional: Pause on hover so users can inspect logos */
+        #marquee-container:hover .marquee-row-left,
+        #marquee-container:hover .marquee-row-right {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll-marquee-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        @keyframes scroll-marquee-right {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
         }
     </style>
 </head>
