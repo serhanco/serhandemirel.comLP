@@ -843,7 +843,7 @@ to { transform: translateX(0); }
       
       // 2. SATIR SAYISI AYARI (Desktop vs Mobil)
       const ROWS_DESKTOP = 4;
-      const ROWS_MOBILE = 6;
+      const ROWS_MOBILE = 5;
 
       // 3. LOGO SIRALAMASI
       const BRAND_LOGOS = [
@@ -898,26 +898,41 @@ to { transform: translateX(0); }
               
               for (let i = 0; i < targetRows; i++) {
                   const chunk = BRAND_LOGOS.slice(i * chunk_size, (i + 1) * chunk_size);
-                  if (chunk.length === 0) break; // In case there are more rows than logos
+                  if (chunk.length === 0) break; 
                   
-                  // Generate HTML for the chunk
-                  let html = '';
+                  // Generate base HTML for the chunk
+                  let chunkHtml = '';
                   chunk.forEach(logo => {
                       const folder = LOGO_THEME === 'white' ? 'white' : 'color';
-                      html += `<img src="assets/img/brands/${folder}/${logo.src}" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
+                      chunkHtml += `<img src="assets/img/brands/${folder}/${logo.src}" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
                   });
+                  
+                  // To guarantee the infinite loop has no blank gaps,
+                  // the "original half" must be strictly wider than the screen.
+                  // We estimate one logo + gap width to be ~200px.
+                  const estimatedChunkWidth = chunk.length * 200;
+                  const screenWidth = window.innerWidth;
+                  
+                  // Multiply the chunk if it's too short to cover the screen
+                  const multiplier = Math.max(1, Math.ceil(screenWidth / estimatedChunkWidth));
+                  
+                  let originalSetHtml = '';
+                  for (let m = 0; m < multiplier; m++) {
+                      originalSetHtml += chunkHtml;
+                  }
                   
                   const rowDiv = document.createElement('div');
                   // Animation direction alternates
                   const directionClass = i % 2 === 0 ? 'marquee-row-left' : 'marquee-row-right';
                   
                   // Note: CSS negative margin for staggered effect
-                  const marginLeft = i % 2 === 0 ? '' : 'ml-[-20%]';
+                  const marginLeft = i % 2 === 0 ? '' : 'ml-[-10%] md:ml-[-20%]';
                   
                   rowDiv.className = `${directionClass} flex items-center justify-start gap-12 md:gap-16 whitespace-nowrap w-max px-8 ${marginLeft}`;
                   
-                  // Duplicate exactly once for perfect infinite marquee
-                  rowDiv.innerHTML = html + html;
+                  // The container is Original Set + Clone Set (so we duplicate originalSetHtml once)
+                  // This means translateX(-50%) will shift exactly by Original Set width!
+                  rowDiv.innerHTML = originalSetHtml + originalSetHtml;
                   
                   container.appendChild(rowDiv);
               }
