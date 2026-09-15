@@ -976,32 +976,21 @@
                     <p class="text-gray-400 text-lg">Tell me about your project and I'll get back to you shortly.</p>
                 </div>
                 
-                <form id="projectForm" action="mailto:info@serhandemirel.com?subject=New%20Project" method="POST" enctype="text/plain" class="space-y-6">
+                <form id="projectForm" action="mailto:info@serhandemirel.com?subject=New%20Project" method="POST" enctype="text/plain" class="space-y-6" autocomplete="off">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2 text-left">
                             <label for="name" class="block text-sm font-medium text-gray-400 ml-1">Name</label>
-                            <input type="text" id="name" name="Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all" placeholder="John Doe">
+                            <input type="text" id="name" name="Name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all" placeholder="John Doe" autocomplete="off">
                         </div>
                         <div class="space-y-2 text-left">
                             <label for="email" class="block text-sm font-medium text-gray-400 ml-1">Email</label>
-                            <input type="email" id="email" name="Email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all" placeholder="john@example.com">
+                            <input type="email" id="email" name="Email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all" placeholder="john@example.com" autocomplete="off">
                         </div>
-                    </div>
-                    
-                    <div class="space-y-2 text-left">
-                        <label for="project_type" class="block text-sm font-medium text-gray-400 ml-1">Project Type</label>
-                        <select id="project_type" name="Project_Type" class="w-full bg-[#111] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all appearance-none cursor-pointer">
-                            <option value="Web Design">Web Design</option>
-                            <option value="App Development">App Development</option>
-                            <option value="UI/UX Design">UI/UX Design</option>
-                            <option value="Consulting">Consulting</option>
-                            <option value="Other">Other</option>
-                        </select>
                     </div>
                     
                     <div class="space-y-2 text-left">
                         <label for="message" class="block text-sm font-medium text-gray-400 ml-1">Project Details</label>
-                        <textarea id="message" name="Message" rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all resize-none" placeholder="Describe your project, goals, and timeline..."></textarea>
+                        <textarea id="message" name="Message" rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent transition-all resize-none" placeholder="Describe your project, goals, and timeline..." autocomplete="off"></textarea>
                     </div>
                     
                     <button type="submit" class="w-full group relative overflow-hidden rounded-xl p-[1px] mt-2">
