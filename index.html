@@ -108,6 +108,32 @@
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
+
+        /* Native Scroll-driven Animations for Logo Marquee (Progressive Enhancement) */
+        @supports (animation-timeline: view()) {
+            #logo-showcase {
+                view-timeline-name: --logo-showcase;
+                view-timeline-axis: block;
+            }
+            .logo-row-1 {
+                animation: scroll-marquee-left linear both;
+                animation-timeline: --logo-showcase;
+                animation-range: entry exit;
+            }
+            .logo-row-2 {
+                animation: scroll-marquee-right linear both;
+                animation-timeline: --logo-showcase;
+                animation-range: entry exit;
+            }
+            @keyframes scroll-marquee-left {
+                from { transform: translateX(0); }
+                to { transform: translateX(-20%); }
+            }
+            @keyframes scroll-marquee-right {
+                from { transform: translateX(0); }
+                to { transform: translateX(20%); }
+            }
+        }
     </style>
 </head>
 <body class="selection:bg-fuchsia-500 selection:text-white relative bg-[#050505]">
@@ -674,29 +700,7 @@
             }
 
             // --- 4. LOGO MARQUEE (GSAP ile zıt yönlü sonsuz kayış) ---
-            if (document.querySelector(".logo-row-1")) {
-                gsap.to(".logo-row-1", {
-                    xPercent: -20,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: "#logo-showcase",
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1
-                    }
-                });
-
-                gsap.to(".logo-row-2", {
-                    xPercent: 20, 
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: "#logo-showcase",
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1
-                    }
-                });
-            }
+            // Migrated to CSS Scroll-driven animations in the <style> tag.
 
             // --- 5. PORTFOLIO FILTERS ---
             const filterBtns = document.querySelectorAll('.filter-btn');
