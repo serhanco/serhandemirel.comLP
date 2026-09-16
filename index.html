@@ -247,13 +247,12 @@
                 </div>
             </div>
             
-            <!-- Horizontal Slider Container (Full Bleed - Ekrandan taşar) -->
+            <!-- Horizontal Slider Container -->
             <div class="relative w-full">
-                <!-- İlk karta baştan offset vermek için padding (px-6 md:px-8) burada başlar, sağ taraf sınırsızdır (pr-6) -->
-                <div id="expertise-slider" class="flex gap-6 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing pb-8 snap-x snap-mandatory px-6 md:px-[calc((100vw-80rem)/2+2rem)] xl:px-[calc((100vw-80rem)/2+2rem)]">
+                <div id="expertise-slider" style="display:flex; flex-wrap:nowrap; gap:1.5rem; overflow-x:auto; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; padding-bottom:2rem; padding-left:1.5rem; cursor:grab; scrollbar-width:none;">
                     
                     <!-- Card 1: Marketing & Growth -->
-                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                    <div style="flex:0 0 auto; width:min(82vw,400px);" class="glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col select-none">
                         <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                         </div>
@@ -267,7 +266,7 @@
                     </div>
 
                     <!-- Card 2: Digital Products -->
-                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                    <div style="flex:0 0 auto; width:min(82vw,400px);" class="glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col select-none">
                         <div class="w-12 h-12 bg-purple-500/20 text-purple-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                         </div>
@@ -281,7 +280,7 @@
                     </div>
 
                     <!-- Card 3: AI & Automation -->
-                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                    <div style="flex:0 0 auto; width:min(82vw,400px);" class="glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col select-none">
                         <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
@@ -294,7 +293,7 @@
                     </div>
 
                     <!-- Card 4: Strategy & Visibility -->
-                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                    <div style="flex:0 0 auto; width:min(82vw,400px);" class="glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col select-none">
                         <div class="w-12 h-12 bg-pink-500/20 text-pink-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012-2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                         </div>
@@ -307,7 +306,7 @@
                     </div>
 
                     <!-- Card 5: Transformation & Ed -->
-                    <div class="min-w-[82vw] md:min-w-[400px] glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col snap-start select-none">
+                    <div style="flex:0 0 auto; width:min(82vw,400px); margin-right:1.5rem;" class="glass p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500 flex flex-col select-none">
                         <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center mb-6 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                         </div>
@@ -499,11 +498,10 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
     
     <script>
         function initPortfolio() {
-            gsap.registerPlugin(ScrollTrigger, Draggable);
+            gsap.registerPlugin(ScrollTrigger);
 
             // --- 1. PARTICLE SYSTEM (Canvas tabanlı performanslı ağ efekti) ---
             const canvas = document.getElementById('particle-canvas');
@@ -633,33 +631,33 @@
             // --- 3. EXPERTISE DRAG & BUTTON SCROLL ---
             const expertiseSlider = document.getElementById('expertise-slider');
 
-            if(expertiseSlider) {
-                // GSAP Draggable Entegrasyonu (Daha pürüzsüz kaydırma)
-                Draggable.create(expertiseSlider, {
-                    type: "scroll",
-                    direction: "x",
-                    edgeResistance: 0.85,
-                    onPress: function() {
-                        expertiseSlider.classList.remove('snap-mandatory');
-                    },
-                    onRelease: function() {
-                        expertiseSlider.classList.add('snap-mandatory');
-                    }
+            if (expertiseSlider) {
+                let isDown = false, startX, scrollLeft;
+
+                expertiseSlider.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    expertiseSlider.style.cursor = 'grabbing';
+                    startX = e.pageX - expertiseSlider.getBoundingClientRect().left;
+                    scrollLeft = expertiseSlider.scrollLeft;
+                    e.preventDefault();
+                });
+                document.addEventListener('mouseup', () => {
+                    isDown = false;
+                    expertiseSlider.style.cursor = 'grab';
+                });
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    const x = e.pageX - expertiseSlider.getBoundingClientRect().left;
+                    expertiseSlider.scrollLeft = scrollLeft - (x - startX);
                 });
 
-                // Ok butonları (Arrow controls)
+                // Ok butonları
                 const prevBtn = document.getElementById('scroll-prev');
                 const nextBtn = document.getElementById('scroll-next');
                 if (prevBtn && nextBtn) {
-                    // Mobilde 82vw, masaüstünde 424px kaydır
-                    const getScrollAmount = () => window.innerWidth < 768 ? window.innerWidth * 0.82 : 424;
-                    
-                    prevBtn.addEventListener('click', () => {
-                        expertiseSlider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-                    });
-                    nextBtn.addEventListener('click', () => {
-                        expertiseSlider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-                    });
+                    const getAmount = () => window.innerWidth < 768 ? window.innerWidth * 0.82 : 424;
+                    prevBtn.addEventListener('click', () => expertiseSlider.scrollBy({ left: -getAmount(), behavior: 'smooth' }));
+                    nextBtn.addEventListener('click', () => expertiseSlider.scrollBy({ left: getAmount(), behavior: 'smooth' }));
                 }
             }
 
@@ -882,17 +880,27 @@
               // Apply dynamic speed setting
               container.style.setProperty('--marquee-speed', `${targetSpeed}s`);
               
-              // Only re-render if the row count actually changed
+              // Sadece satır sayısı değiştiğinde tekrar render et
               if (targetRows === currentRows) return;
               currentRows = targetRows;
               
               container.innerHTML = '';
               
-              // Math logic: divide array into targetRows chunks
-              const chunk_size = Math.ceil(BRAND_LOGOS.length / targetRows);
+              // Satır sayısına tam bölünmesi için eksik logo varsa array'in başından kopyalayarak tamamla
+              let logosToRender = [...BRAND_LOGOS];
+              const remainder = logosToRender.length % targetRows;
+              if (remainder !== 0) {
+                  const needed = targetRows - remainder;
+                  for (let i = 0; i < needed; i++) {
+                      logosToRender.push(BRAND_LOGOS[i]);
+                  }
+              }
+              
+              // Her satırda tam eşit sayıda (chunk_size) logo olacak
+              const chunk_size = logosToRender.length / targetRows;
               
               for (let i = 0; i < targetRows; i++) {
-                  const chunk = BRAND_LOGOS.slice(i * chunk_size, (i + 1) * chunk_size);
+                  const chunk = logosToRender.slice(i * chunk_size, (i + 1) * chunk_size);
                   if (chunk.length === 0) break; 
                   
                   // Generate base HTML for the chunk
