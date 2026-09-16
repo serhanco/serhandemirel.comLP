@@ -499,10 +499,11 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
     
     <script>
         function initPortfolio() {
-            gsap.registerPlugin(ScrollTrigger);
+            gsap.registerPlugin(ScrollTrigger, Draggable);
 
             // --- 1. PARTICLE SYSTEM (Canvas tabanlı performanslı ağ efekti) ---
             const canvas = document.getElementById('particle-canvas');
@@ -631,34 +632,19 @@
 
             // --- 3. EXPERTISE DRAG & BUTTON SCROLL ---
             const expertiseSlider = document.getElementById('expertise-slider');
-            let isDown = false;
-            let startX;
-            let scrollLeft;
 
             if(expertiseSlider) {
-                // Sürükle (Drag) mekanizması
-                expertiseSlider.addEventListener('mousedown', (e) => {
-                    isDown = true;
-                    expertiseSlider.classList.remove('snap-mandatory'); 
-                    startX = e.pageX - expertiseSlider.offsetLeft;
-                    scrollLeft = expertiseSlider.scrollLeft;
-                });
-                
-                const stopDrag = () => {
-                    if(!isDown) return;
-                    isDown = false;
-                    expertiseSlider.classList.add('snap-mandatory'); 
-                };
-                
-                expertiseSlider.addEventListener('mouseleave', stopDrag);
-                expertiseSlider.addEventListener('mouseup', stopDrag);
-                
-                expertiseSlider.addEventListener('mousemove', (e) => {
-                    if (!isDown) return;
-                    e.preventDefault();
-                    const x = e.pageX - expertiseSlider.offsetLeft;
-                    const walk = (x - startX) * 2; // Sürükleme hızı çarpanı
-                    expertiseSlider.scrollLeft = scrollLeft - walk;
+                // GSAP Draggable Entegrasyonu (Daha pürüzsüz kaydırma)
+                Draggable.create(expertiseSlider, {
+                    type: "scroll",
+                    direction: "x",
+                    edgeResistance: 0.85,
+                    onPress: function() {
+                        expertiseSlider.classList.remove('snap-mandatory');
+                    },
+                    onRelease: function() {
+                        expertiseSlider.classList.add('snap-mandatory');
+                    }
                 });
 
                 // Ok butonları (Arrow controls)
@@ -834,7 +820,7 @@
       
       // 2. SATIR SAYISI AYARI (Desktop vs Mobil)
       const ROWS_DESKTOP = 5;
-      const ROWS_MOBILE = 6;
+      const ROWS_MOBILE = 5;
 
       // 3. KAYDIRMA HIZI AYARI (Saniye cinsinden - Sayı küçüldükçe hızlanır, büyüdükçe yavaşlar)
       const SPEED_DESKTOP = 50; 
@@ -877,7 +863,8 @@
           { src: 'corin.png', alt: 'Corin' },
           { src: 'gungor.png', alt: 'Güngör Otomobil' },
           { src: 'dgs.png', alt: 'DGS' },
-          { src: 'keysmart.png', alt: 'KeySmart' }
+          { src: 'keysmart.png', alt: 'KeySmart' },
+          { src: 'hedef_yelken.png', alt: 'Hedef Yelken' }
       ];
 
       document.addEventListener("DOMContentLoaded", () => {
@@ -912,7 +899,7 @@
                   let chunkHtml = '';
                   chunk.forEach(logo => {
                       const folder = LOGO_THEME === 'white' ? 'white' : 'color';
-                      chunkHtml += `<img src="assets/img/brands/${folder}/${logo.src}?v=4" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
+                      chunkHtml += `<img src="assets/img/brands/${folder}/${logo.src}?v=5" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
                   });
                   
                   // To guarantee the infinite loop has no blank gaps,
