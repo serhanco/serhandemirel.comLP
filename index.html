@@ -567,15 +567,16 @@
                         }
                     } else {
                         // 2: Ambient Orbs
-                        const particleCount = window.innerWidth < 768 ? 15 : 35;
+                        const particleCount = window.innerWidth < 768 ? 15 : 25;
                         for (let i = 0; i < particleCount; i++) {
                             particles.push({
                                 x: Math.random() * width,
                                 y: Math.random() * height,
-                                vx: (Math.random() - 0.5) * 0.3,
-                                vy: (Math.random() - 0.5) * 0.3 - 0.2, // Hafifçe yukarı meyil
-                                radius: Math.random() * 40 + 10,       // Büyük orblar
-                                hue: Math.random() > 0.5 ? 280 : 320   // Mor veya Fuşya
+                                vx: (Math.random() - 0.5) * 0.2,
+                                vy: (Math.random() - 0.5) * 0.2 - 0.1, // Çok hafif yukarı meyil
+                                radius: Math.random() * 60 + 20,       // Daha büyük orblar
+                                hue: Math.random() > 0.5 ? 280 : 320,  // Mor veya Fuşya
+                                opacity: Math.random() * 0.3 + 0.1     // Rastgele belirginlik
                             });
                         }
                     }
@@ -655,7 +656,13 @@
                             
                             ctx.beginPath();
                             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                            ctx.fillStyle = `hsla(${p.hue}, 80%, 60%, 0.05)`;
+                            
+                            // Radial gradient for a better orb look
+                            let gradient = ctx.createRadialGradient(p.x, p.y, p.radius * 0.1, p.x, p.y, p.radius);
+                            gradient.addColorStop(0, `hsla(${p.hue}, 80%, 70%, ${p.opacity})`);
+                            gradient.addColorStop(1, `hsla(${p.hue}, 80%, 50%, 0)`);
+                            
+                            ctx.fillStyle = gradient;
                             ctx.fill();
                         }
                     });
