@@ -670,7 +670,14 @@
                 
                 initParticles();
                 animateParticles();
-                window.addEventListener('resize', initParticles);
+                
+                let lastWidth = window.innerWidth;
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth !== lastWidth) {
+                        lastWidth = window.innerWidth;
+                        initParticles();
+                    }
+                });
             }
 
             // --- 2. DYNAMIC WORDS (We can... Slot efekti) ---
