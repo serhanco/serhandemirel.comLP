@@ -137,6 +137,25 @@
             from { transform: translateX(-50%); }
             to { transform: translateX(0); }
         }
+        @keyframes slotScroll {
+            to { transform: translateY(calc(-100% + (100% / 19))); }
+        }
+        
+        @supports (animation-timeline: view()) {
+            #dynamic-words-section {
+                height: 300vh;
+                view-timeline-name: --dynamic-words;
+            }
+            #dynamic-words-content {
+                position: sticky;
+                top: 0;
+            }
+            #word-slider {
+                animation: slotScroll linear;
+                animation-timeline: --dynamic-words;
+                animation-range: contain 0% contain 100%;
+            }
+        }
     </style>
 </head>
 <body class="selection:bg-fuchsia-500 selection:text-white relative bg-[#050505]">
@@ -221,9 +240,27 @@
         <div id="dynamic-words-content" class="relative z-10 h-screen w-full flex items-center justify-center px-4">
             <div class="text-4xl md:text-6xl lg:text-8xl font-bold flex flex-wrap justify-center items-center gap-x-3 md:gap-x-5 text-center">
                 <span class="text-gray-100">We can</span>
-                <div class="word-mask">
-                    <div id="word-slider" class="word-slider-inner gradient-text">
-                        <!-- JS Injects Words Here -->
+                <div class="h-[1.2em] overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 min-w-[300px] text-center md:text-left relative">
+                    <div id="word-slider" class="absolute top-0 left-0 w-full flex flex-col">
+                        <div class="word-item">design.</div>
+                        <div class="word-item">prototype.</div>
+                        <div class="word-item">solve.</div>
+                        <div class="word-item">build.</div>
+                        <div class="word-item">develop.</div>
+                        <div class="word-item">debug.</div>
+                        <div class="word-item">learn.</div>
+                        <div class="word-item">optimize.</div>
+                        <div class="word-item">ship.</div>
+                        <div class="word-item">prompt.</div>
+                        <div class="word-item">collaborate.</div>
+                        <div class="word-item">create.</div>
+                        <div class="word-item">transform.</div>
+                        <div class="word-item">automate.</div>
+                        <div class="word-item">innovate.</div>
+                        <div class="word-item">scale.</div>
+                        <div class="word-item">integrate.</div>
+                        <div class="word-item">deploy.</div>
+                        <div class="word-item">succeed.</div>
                     </div>
                 </div>
             </div>
@@ -681,43 +718,36 @@
             }
 
             // --- 2. DYNAMIC WORDS (We can... Slot efekti) ---
-            const words = [
-                "design", "prototype", "solve", "build", "develop", 
-                "debug", "learn", "optimize", "ship", "prompt", 
-                "collaborate", "create", "transform", "automate", 
-                "innovate", "scale", "integrate", "deploy", "succeed"
-            ];
+            if (!CSS.supports('animation-timeline', 'view()')) {
+                const words = [
+                    "design", "prototype", "solve", "build", "develop", 
+                    "debug", "learn", "optimize", "ship", "prompt", 
+                    "collaborate", "create", "transform", "automate", 
+                    "innovate", "scale", "integrate", "deploy", "succeed"
+                ];
 
-            const sliderInner = document.getElementById('word-slider');
-            if (sliderInner) {
-                // Kelimeleri HTML'e enjekte et
-                words.forEach(word => {
-                    const div = document.createElement('div');
-                    div.className = 'word-item';
-                    div.innerText = word + ".";
-                    sliderInner.appendChild(div);
-                });
+                const sliderInner = document.getElementById('word-slider');
+                if (sliderInner) {
+                    const totalWords = words.length;
+                    const translationAmount = -100 * ((totalWords - 1) / totalWords);
 
-                const totalWords = words.length;
-                // Sona kadar kaydırma miktarı
-                const translationAmount = -100 * ((totalWords - 1) / totalWords);
-
-                gsap.to(sliderInner, {
-                    yPercent: translationAmount,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: "#dynamic-words-section",
-                        start: "top top", 
-                        end: "+=2500", // Scroll uzunluğu
-                        pin: "#dynamic-words-content", 
-                        scrub: 1, // Yumuşatma oranı
-                        snap: {
-                            snapTo: 1 / (totalWords - 1),
-                            duration: 0.2,
-                            ease: "power1.inOut"
+                    gsap.to(sliderInner, {
+                        yPercent: translationAmount,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: "#dynamic-words-section",
+                            start: "top top", 
+                            end: "+=2500", // Scroll uzunluğu
+                            pin: "#dynamic-words-content", 
+                            scrub: 1, // Yumuşatma oranı
+                            snap: {
+                                snapTo: 1 / (totalWords - 1),
+                                duration: 0.2,
+                                ease: "power1.inOut"
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
 
             // --- 3. EXPERTISE DRAG & BUTTON SCROLL ---
