@@ -12,7 +12,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'SD_THEME_VERSION', '1.0.0' );
 
 require get_template_directory() . '/inc/brands.php';
-require get_template_directory() . '/inc/contact.php';
+
+/**
+ * The contact form, content types and fields live in the companion
+ * "Serhan Demirel Core" plugin (wordpress-plugin/serhandemirel-core).
+ */
+function sd_missing_core_notice() {
+	if ( defined( 'SDC_VERSION' ) || ! current_user_can( 'activate_plugins' ) ) {
+		return;
+	}
+	echo '<div class="notice notice-warning"><p>' . esc_html__( 'The Serhan Demirel theme needs the "Serhan Demirel Core" plugin. Without it the contact form does not work.', 'serhandemirel' ) . '</p></div>';
+}
+add_action( 'admin_notices', 'sd_missing_core_notice' );
 
 /**
  * Theme setup.
