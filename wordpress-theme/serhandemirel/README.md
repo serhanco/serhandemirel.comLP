@@ -51,3 +51,16 @@ npm run build
 ## Work and Insights pages
 
 Projects live at `/work/` and `/work/<project>/`. For an Insights list, create a page called Insights and pick it as **Posts page** under **Settings → Reading** (with a static homepage); for article URLs like `/insights/<post>/`, set **Settings → Permalinks** to Custom `/insights/%postname%/`.
+
+## Menu and languages
+
+- **Menu:** assign a menu to "Main menu" under Appearance → Menus. A menu item's
+  "Title Attribute" can hold an emoji, shown next to it in the mobile menu.
+  Without a menu, the navbar links to the visible front-page sections.
+- **Languages:** with Polylang active, a language switcher appears in the navbar
+  and the mobile menu. With Polylang, assign one menu per language.
+- **Translations:** every theme string is in `languages/serhandemirel.pot`
+  (the plugin's in `serhandemirel-core/languages/serhandemirel-core.pot`).
+  Translate with Poedit or Loco Translate into `languages/<locale>.po/.mo`
+  (e.g. `fr_FR.mo`). Regenerate the .pot after changing strings:
+  `wp i18n make-pot . languages/serhandemirel.pot --exclude=node_modules,assets/css`.

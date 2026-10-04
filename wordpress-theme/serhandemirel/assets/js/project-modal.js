@@ -10,7 +10,8 @@ document.getElementById('projectForm').addEventListener('submit', function(e) {
 
     // Loading state
     const originalText = btnText.innerText;
-    btnText.innerText = 'Sending...';
+    const i18n = sdContact.i18n || {};
+    btnText.innerText = i18n.sending || 'Sending...';
     submitBtn.style.pointerEvents = 'none';
     submitBtn.style.opacity = '0.7';
     formMessage.classList.add('hidden');
@@ -33,7 +34,7 @@ document.getElementById('projectForm').addEventListener('submit', function(e) {
         if (res.status === 200 && res.body.status === 'success') {
             // Extract first name
             const fullName = formData.get('Name').trim();
-            const firstName = fullName.split(' ')[0] || 'Friend';
+            const firstName = fullName.split(' ')[0] || i18n.friend || 'Friend';
 
             // Update success container
             document.getElementById('successName').innerText = firstName;
@@ -59,13 +60,13 @@ document.getElementById('projectForm').addEventListener('submit', function(e) {
             form.reset();
         } else {
             formMessage.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/20');
-            formMessage.innerText = res.body.message || 'Something went wrong. Please try again.';
+            formMessage.innerText = res.body.message || i18n.error || 'Something went wrong. Please try again.';
         }
     })
     .catch(error => {
         formMessage.classList.remove('hidden');
         formMessage.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/20');
-        formMessage.innerText = 'Network error. Please try again later.';
+        formMessage.innerText = i18n.network || 'Network error. Please try again later.';
     })
     .finally(() => {
         btnText.innerText = originalText;

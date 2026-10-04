@@ -26,8 +26,8 @@ get_header();
         <?php endwhile; ?>
         <?php the_posts_pagination(); ?>
     <?php else : ?>
-        <h1 class="text-4xl font-black text-white mb-6">Nothing here</h1>
-        <p class="text-gray-400"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="underline hover:text-white">Back to the homepage</a></p>
+        <h1 class="text-4xl font-black text-white mb-6"><?php esc_html_e( 'Nothing here', 'serhandemirel' ); ?></h1>
+        <p class="text-gray-400"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="underline hover:text-white"><?php esc_html_e( 'Back to the homepage', 'serhandemirel' ); ?></a></p>
     <?php endif; ?>
 </main>
 

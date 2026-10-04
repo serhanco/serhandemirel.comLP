@@ -16,6 +16,7 @@ require get_template_directory() . '/inc/options.php';
 require get_template_directory() . '/inc/options-page.php';
 require get_template_directory() . '/inc/tracking.php';
 require get_template_directory() . '/inc/content.php';
+require get_template_directory() . '/inc/i18n.php';
 
 /**
  * The contact form, content types and fields live in the companion
@@ -33,6 +34,12 @@ add_action( 'admin_notices', 'sd_missing_core_notice' );
  * Theme setup.
  */
 function sd_setup() {
+	load_theme_textdomain( 'serhandemirel', get_template_directory() . '/languages' );
+	register_nav_menus(
+		array(
+			'primary' => __( 'Main menu', 'serhandemirel' ),
+		)
+	);
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'html5', array( 'script', 'style', 'search-form', 'gallery', 'caption' ) );
 }
@@ -91,6 +98,12 @@ function sd_enqueue_assets() {
 			'action'  => 'sd_contact',
 			'nonce'   => wp_create_nonce( 'sd_contact' ),
 			'lang'    => sd_current_lang(),
+			'i18n'    => array(
+				'sending' => __( 'Sending...', 'serhandemirel' ),
+				'error'   => __( 'Something went wrong. Please try again.', 'serhandemirel' ),
+				'network' => __( 'Network error. Please try again later.', 'serhandemirel' ),
+				'friend'  => __( 'Friend', 'serhandemirel' ),
+			),
 		)
 	);
 }
