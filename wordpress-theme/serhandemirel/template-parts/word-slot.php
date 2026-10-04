@@ -13,7 +13,7 @@
 
     <div id="dynamic-words-content" class="relative z-10 h-screen w-full flex items-center justify-center px-4">
         <div class="text-4xl md:text-6xl lg:text-8xl font-bold flex flex-wrap justify-center items-center gap-x-3 md:gap-x-5 text-center">
-            <span class="text-gray-100">We can</span>
+            <span class="text-gray-100"><?php echo esc_html( sd_opt( 'words_prefix' ) ); ?></span>
             <div class="word-mask">
                 <div id="word-slider" class="word-slider-inner gradient-text">
                     <!-- JS Injects Words Here -->

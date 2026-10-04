@@ -22,19 +22,19 @@
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-fuchsia-500"></span>
             </span>
-            <span class="text-xs font-semibold text-gray-300 tracking-wider uppercase">Engineering the digital future</span>
+            <span class="text-xs font-semibold text-gray-300 tracking-wider uppercase"><?php echo esc_html( sd_opt( 'hero_badge' ) ); ?></span>
         </div>
 
         <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-4 md:mb-6 leading-tight text-white">
-            Serhan Demirel
+            <?php echo esc_html( sd_opt( 'hero_title' ) ); ?>
         </h1>
         <p class="text-lg md:text-2xl text-gray-400 font-light max-w-2xl mx-auto">
-            Digital Solutions Provider
+            <?php echo esc_html( sd_opt( 'hero_subtitle' ) ); ?>
         </p>
     </div>
 
     <div class="absolute bottom-12 flex flex-col items-center opacity-60 hero-scroll z-10">
-        <span class="text-xs tracking-widest uppercase mb-3 text-gray-400 font-medium">Explore</span>
+        <span class="text-xs tracking-widest uppercase mb-3 text-gray-400 font-medium"><?php echo esc_html( sd_opt( 'hero_explore' ) ); ?></span>
         <div class="w-[1px] h-12 bg-gradient-to-b from-transparent via-white to-transparent animate-pulse"></div>
     </div>
 </header>
