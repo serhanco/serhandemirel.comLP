@@ -265,7 +265,7 @@ function initPortfolio() {
 
                 // Portfolyo öğelerini filtrele
                 portfolioItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category').includes(filter)) {
+                    if (filter === 'all' || (item.getAttribute('data-category') || '').split(' ').includes(filter)) {
                         item.style.display = 'block';
                         gsap.fromTo(item, {opacity: 0, scale: 0.95}, {opacity: 1, scale: 1, duration: 0.4});
                     } else {

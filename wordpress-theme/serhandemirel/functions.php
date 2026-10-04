@@ -15,6 +15,7 @@ require get_template_directory() . '/inc/brands.php';
 require get_template_directory() . '/inc/options.php';
 require get_template_directory() . '/inc/options-page.php';
 require get_template_directory() . '/inc/tracking.php';
+require get_template_directory() . '/inc/content.php';
 
 /**
  * The contact form, content types and fields live in the companion
@@ -51,11 +52,11 @@ add_filter( 'document_title_separator', 'sd_title_separator' );
 function sd_enqueue_assets() {
 	$uri = get_template_directory_uri();
 
-	// Tailwind Play CDN must run in <head> so classes are styled before paint.
-	wp_enqueue_script( 'tailwind', 'https://cdn.tailwindcss.com', array(), null, false );
+	// Built from the theme's classes with `npm run build` (see README).
+	wp_enqueue_style( 'sd-tailwind', $uri . '/assets/css/tailwind.css', array(), filemtime( get_template_directory() . '/assets/css/tailwind.css' ) );
 
 	wp_enqueue_style( 'sd-inter', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap', array(), null );
-	wp_enqueue_style( 'sd-style', get_stylesheet_uri(), array( 'sd-inter' ), SD_THEME_VERSION );
+	wp_enqueue_style( 'sd-style', get_stylesheet_uri(), array( 'sd-inter', 'sd-tailwind' ), SD_THEME_VERSION );
 
 	wp_enqueue_script( 'gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js', array(), '3.12.2', true );
 	wp_enqueue_script( 'gsap-scrolltrigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js', array( 'gsap' ), '3.12.2', true );
@@ -77,8 +78,7 @@ function sd_enqueue_assets() {
 		'sd-brands',
 		'sdBrands',
 		array(
-			'baseUrl' => $uri . '/assets/img/brands/',
-			'logos'   => sd_brand_logos(),
+			'logos' => sd_marquee_logos(),
 		)
 	);
 

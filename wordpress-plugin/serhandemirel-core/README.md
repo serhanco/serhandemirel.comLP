@@ -32,7 +32,7 @@ With Polylang, projects, expertise cards, posts, industries and services get a c
 
 ## For the theme
 
-`includes/api.php` returns plain arrays for templates: `sdc_get_brands()`, `sdc_get_expertise()`, `sdc_get_projects( $featured_only )`, `sdc_read_time( $post_id )`. Values are raw; escape on output.
+`includes/api.php` returns plain arrays for templates: `sdc_get_brands()`, `sdc_get_expertise()`, `sdc_get_projects( $featured_only )`, `sdc_project_data( $post )`, `sdc_read_time( $post_id )`. Values are raw; escape on output.
 
 ## Contact form
 

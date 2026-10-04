@@ -150,7 +150,7 @@ function sdc_field_groups() {
 					'label'  => __( 'Color logo', 'serhandemirel-core' ),
 					'type'   => 'image',
 					'shared' => true,
-					'help'   => __( 'Optional, used on hover.', 'serhandemirel-core' ),
+					'help'   => __( 'Optional. Used where the logo sits on a light background.', 'serhandemirel-core' ),
 				),
 				'url'        => array(
 					'label'  => __( 'Website', 'serhandemirel-core' ),

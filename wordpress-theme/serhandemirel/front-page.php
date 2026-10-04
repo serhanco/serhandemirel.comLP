@@ -9,11 +9,10 @@ get_header();
 
 get_template_part( 'template-parts/hero' );
 get_template_part( 'template-parts/word-slot' );
-if ( sd_opt( 'show_expertise' ) ) {
-	get_template_part( 'template-parts/expertise' );
-}
-if ( sd_opt( 'show_brands' ) ) {
-	get_template_part( 'template-parts/brands' );
+foreach ( array( 'expertise', 'brands', 'work', 'insights' ) as $sd_section ) {
+	if ( sd_show_section( $sd_section ) ) {
+		get_template_part( 'template-parts/' . $sd_section );
+	}
 }
 get_template_part( 'template-parts/contact' );
 

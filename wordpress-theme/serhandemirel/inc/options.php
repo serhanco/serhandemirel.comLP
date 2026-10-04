@@ -138,6 +138,48 @@ function sd_option_tabs() {
 					'i18n'    => true,
 					'default' => 'Brands That Shaped My Story',
 				),
+				'show_work'         => array(
+					'label'   => __( 'Show the Work section', 'serhandemirel' ),
+					'type'    => 'checkbox',
+					'default' => true,
+					'help'    => __( 'Appears once at least one project is published. Projects ticked "Show on home page" are listed; if none are ticked, all projects are.', 'serhandemirel' ),
+				),
+				'work_eyebrow'      => array(
+					'label'   => __( 'Work: small heading', 'serhandemirel' ),
+					'type'    => 'text',
+					'i18n'    => true,
+					'default' => 'Selected Work',
+				),
+				'work_title'        => array(
+					'label'   => __( 'Work: heading', 'serhandemirel' ),
+					'type'    => 'text',
+					'i18n'    => true,
+					'default' => 'Featured Projects',
+				),
+				'work_all_label'    => array(
+					'label'   => __( 'Work: "All" filter button', 'serhandemirel' ),
+					'type'    => 'text',
+					'i18n'    => true,
+					'default' => 'All',
+				),
+				'show_insights'     => array(
+					'label'   => __( 'Show the Insights section', 'serhandemirel' ),
+					'type'    => 'checkbox',
+					'default' => true,
+					'help'    => __( 'Appears once at least one post is published. Posts ticked "Show on home page" are listed; if none are ticked, the two newest are.', 'serhandemirel' ),
+				),
+				'insights_eyebrow'  => array(
+					'label'   => __( 'Insights: small heading', 'serhandemirel' ),
+					'type'    => 'text',
+					'i18n'    => true,
+					'default' => 'Insights',
+				),
+				'insights_title'    => array(
+					'label'   => __( 'Insights: heading', 'serhandemirel' ),
+					'type'    => 'text',
+					'i18n'    => true,
+					'default' => 'Latest Thoughts',
+				),
 			),
 		),
 		'contact'  => array(

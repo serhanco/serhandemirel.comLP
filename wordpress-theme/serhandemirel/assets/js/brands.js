@@ -9,8 +9,10 @@ const ROWS_MOBILE = 5;
 const SPEED_DESKTOP = 50; 
 const SPEED_MOBILE = 30; 
 
-// 4. LOGO SIRALAMASI (inc/brands.php'den gelir)
+// 4. LOGO SIRALAMASI (Brands menüsünden, yoksa inc/brands.php'den gelir)
 const BRAND_LOGOS = sdBrands.logos;
+
+const escapeAttr = (value) => String(value || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById('marquee-container');
@@ -53,8 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Generate base HTML for the chunk
             let chunkHtml = '';
             chunk.forEach(logo => {
-                const folder = LOGO_THEME === 'white' ? 'white' : 'color';
-                chunkHtml += `<img src="${sdBrands.baseUrl}${folder}/${logo.src}?v=5" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
+                const src = LOGO_THEME === 'white' ? logo.white : (logo.color || logo.white);
+                const img = `<img src="${escapeAttr(src)}" alt="${escapeAttr(logo.alt)}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
+                chunkHtml += logo.url ? `<a href="${escapeAttr(logo.url)}" target="_blank" rel="noopener" class="shrink-0">${img}</a>` : img;
             });
 
             // To guarantee the infinite loop has no blank gaps,

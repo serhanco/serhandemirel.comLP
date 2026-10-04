@@ -102,26 +102,34 @@ function sdc_get_projects( $featured_only = false ) {
 		$args['meta_value'] = '1'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- small table.
 	}
 
-	$projects = array();
-	foreach ( get_posts( $args ) as $post ) {
-		$industries = get_the_terms( $post, 'sd_industry' );
-		$brand      = (int) sdc_get( $post->ID, 'brand' );
-		$projects[] = array(
-			'id'         => $post->ID,
-			'title'      => $post->post_title,
-			'permalink'  => get_permalink( $post ),
-			'image'      => (string) get_the_post_thumbnail_url( $post, 'large' ),
-			'client'     => (string) sdc_get( $post->ID, 'client' ),
-			'location'   => (string) sdc_get( $post->ID, 'location' ),
-			'summary'    => (string) sdc_get( $post->ID, 'summary' ),
-			'metric'     => (string) sdc_get( $post->ID, 'metric' ),
-			'year'       => (int) sdc_get( $post->ID, 'year' ),
-			'url'        => (string) sdc_get( $post->ID, 'url' ),
-			'industries' => is_array( $industries ) ? wp_list_pluck( $industries, 'slug' ) : array(),
-			'brand_logo' => $brand ? sdc_attachment_src( (int) sdc_get( $brand, 'logo_white' ) ) : '',
-		);
-	}
-	return $projects;
+	return array_map( 'sdc_project_data', get_posts( $args ) );
+}
+
+/**
+ * Card and detail data for one project.
+ *
+ * @param WP_Post|int $post Project.
+ * @return array
+ */
+function sdc_project_data( $post ) {
+	$post       = get_post( $post );
+	$industries = get_the_terms( $post, 'sd_industry' );
+	$brand      = (int) sdc_get( $post->ID, 'brand' );
+	return array(
+		'id'         => $post->ID,
+		'title'      => $post->post_title,
+		'permalink'  => get_permalink( $post ),
+		'image'      => (string) get_the_post_thumbnail_url( $post, 'large' ),
+		'client'     => (string) sdc_get( $post->ID, 'client' ),
+		'location'   => (string) sdc_get( $post->ID, 'location' ),
+		'summary'    => (string) sdc_get( $post->ID, 'summary' ),
+		'metric'     => (string) sdc_get( $post->ID, 'metric' ),
+		'year'       => (int) sdc_get( $post->ID, 'year' ),
+		'url'        => (string) sdc_get( $post->ID, 'url' ),
+		'industries' => is_array( $industries ) ? wp_list_pluck( $industries, 'slug' ) : array(),
+		'brand_logo' => $brand ? sdc_attachment_src( (int) sdc_get( $brand, 'logo_white' ) ) : '',
+		'gallery'    => array_values( array_filter( array_map( 'absint', explode( ',', (string) sdc_get( $post->ID, 'gallery' ) ) ) ) ),
+	);
 }
 
 /**

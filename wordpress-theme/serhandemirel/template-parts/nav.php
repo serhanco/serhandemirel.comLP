@@ -9,18 +9,22 @@
 <!-- Fullscreen Premium Mobile Menu -->
 <div id="mobile-fullscreen-menu" class="fixed inset-0 z-[100] bg-[#0a0a0a]/95 backdrop-blur-3xl opacity-0 pointer-events-none transition-all duration-500 flex flex-col justify-center items-center">
     <div id="mobile-menu-content" class="flex flex-col gap-10 text-center scale-90 translate-y-8 opacity-0 transition-all duration-500 delay-100 w-full px-6">
-        <?php if ( sd_opt( 'show_expertise' ) ) : ?>
+        <?php if ( sd_show_section( 'expertise' ) ) : ?>
         <a href="<?php echo esc_url( sd_anchor( '#expertise' ) ); ?>" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors flex items-center justify-center gap-4">
             <span class="text-4xl">⚡️</span> Expertise
         </a>
         <?php endif; ?>
-        <?php if ( sd_opt( 'show_brands' ) ) : ?>
+        <?php if ( sd_show_section( 'brands' ) ) : ?>
         <a href="<?php echo esc_url( sd_anchor( '#brands' ) ); ?>" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors flex items-center justify-center gap-4">
             <span class="text-4xl">🏆</span> Brands
         </a>
         <?php endif; ?>
-        <!-- <a href="#portfolio" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors flex items-center justify-center gap-4"><span class="text-4xl">💼</span> Work</a> -->
-        <!-- <a href="#insights" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors flex items-center justify-center gap-4"><span class="text-4xl">📝</span> Insights</a> -->
+        <?php if ( sd_show_section( 'work' ) ) : ?>
+        <a href="<?php echo esc_url( sd_anchor( '#portfolio' ) ); ?>" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors flex items-center justify-center gap-4"><span class="text-4xl">💼</span> Work</a>
+        <?php endif; ?>
+        <?php if ( sd_show_section( 'insights' ) ) : ?>
+        <a href="<?php echo esc_url( sd_anchor( '#insights' ) ); ?>" class="mobile-link text-5xl font-black text-gray-400 hover:text-white transition-colors flex items-center justify-center gap-4"><span class="text-4xl">📝</span> Insights</a>
+        <?php endif; ?>
         <a href="<?php echo esc_url( sd_anchor( '#contact' ) ); ?>" class="mobile-link mt-8 py-5 w-full rounded-full bg-white text-black text-2xl font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-3">
             <span class="text-3xl">👋</span> Let's Talk
         </a>
@@ -33,14 +37,18 @@
 
     <!-- Desktop Menu -->
     <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-        <?php if ( sd_opt( 'show_expertise' ) ) : ?>
+        <?php if ( sd_show_section( 'expertise' ) ) : ?>
         <a href="<?php echo esc_url( sd_anchor( '#expertise' ) ); ?>" class="hover:text-white transition-colors">Expertise</a>
         <?php endif; ?>
-        <?php if ( sd_opt( 'show_brands' ) ) : ?>
+        <?php if ( sd_show_section( 'brands' ) ) : ?>
         <a href="<?php echo esc_url( sd_anchor( '#brands' ) ); ?>" class="hover:text-white transition-colors">Brands</a>
         <?php endif; ?>
-        <!-- <a href="#portfolio" class="hover:text-white transition-colors">Work</a> -->
-        <!-- <a href="#insights" class="hover:text-white transition-colors">Insights</a> -->
+        <?php if ( sd_show_section( 'work' ) ) : ?>
+        <a href="<?php echo esc_url( sd_anchor( '#portfolio' ) ); ?>" class="hover:text-white transition-colors">Work</a>
+        <?php endif; ?>
+        <?php if ( sd_show_section( 'insights' ) ) : ?>
+        <a href="<?php echo esc_url( sd_anchor( '#insights' ) ); ?>" class="hover:text-white transition-colors">Insights</a>
+        <?php endif; ?>
         <a href="<?php echo esc_url( sd_anchor( '#contact' ) ); ?>" class="px-5 py-2 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors">Contact</a>
     </div>
 
