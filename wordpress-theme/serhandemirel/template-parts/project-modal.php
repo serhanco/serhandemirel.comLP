@@ -21,8 +21,8 @@
         <div class="p-8 md:p-12">
             <div id="formContainer">
             <div class="mb-8 text-center">
-                <h3 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mb-2">Let's Create Something Great</h3>
-                <p class="text-gray-400 text-lg">Tell me about your project and I'll get back to you shortly.</p>
+                <h3 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mb-2"><?php echo esc_html( sd_opt( 'form_title' ) ); ?></h3>
+                <p class="text-gray-400 text-lg"><?php echo esc_html( sd_opt( 'form_intro' ) ); ?></p>
             </div>
 
             <form id="projectForm" class="space-y-6" autocomplete="off">
@@ -48,7 +48,7 @@
                 <button type="submit" id="submitBtn" class="w-full group relative overflow-hidden rounded-xl p-[1px] mt-2">
                     <span class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-80 group-hover:opacity-100 transition-opacity duration-300"></span>
                     <div class="relative bg-[#0a0a0a] px-8 py-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 hover:bg-transparent">
-                        <span class="text-lg font-bold text-white">Send Message</span>
+                        <span class="text-lg font-bold text-white"><?php echo esc_html( sd_opt( 'form_button' ) ); ?></span>
                         <svg class="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </div>
                 </button>
@@ -60,7 +60,7 @@
                 <svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
             </div>
             <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">Awesome, <span id="successName" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></span>!</h3>
-            <p class="text-gray-400 text-lg mb-8">I have received your message and will get back to you shortly.</p>
+            <p class="text-gray-400 text-lg mb-8"><?php echo esc_html( sd_opt( 'form_success_text' ) ); ?></p>
             <button type="button" onclick="closeProjectModal()" class="px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-white font-medium transition-colors">
                 Close Window
             </button>

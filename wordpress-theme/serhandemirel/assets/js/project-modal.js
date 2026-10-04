@@ -19,6 +19,8 @@ document.getElementById('projectForm').addEventListener('submit', function(e) {
     const formData = new FormData(form);
     formData.append('action', sdContact.action);
     formData.append('nonce', sdContact.nonce);
+    formData.append('lang', sdContact.lang || '');
+    formData.append('source', window.location.href);
 
     fetch(sdContact.ajaxUrl, {
         method: 'POST',
@@ -51,6 +53,8 @@ document.getElementById('projectForm').addEventListener('submit', function(e) {
                 successContainer.style.opacity = '1';
                 successContainer.style.transform = 'scale(1)';
             }, 50);
+
+            if (window.sdTrack) window.sdTrack('sd_form_submit', { form_name: 'start_a_project' });
 
             form.reset();
         } else {

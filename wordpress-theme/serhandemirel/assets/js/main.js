@@ -171,7 +171,7 @@ function initPortfolio() {
     }
 
     // --- 2. DYNAMIC WORDS (We can... Slot efekti) ---
-    const words = [
+    const words = (window.sdMain && sdMain.words.length) ? sdMain.words : [
         "design", "prototype", "solve", "build", "develop", 
         "debug", "learn", "optimize", "ship", "prompt", 
         "collaborate", "create", "transform", "automate", 
@@ -375,11 +375,11 @@ function initPortfolio() {
 
     function updateTime() {
         const timeString = new Date().toLocaleTimeString('en-US', {
-            timeZone: 'Europe/Istanbul', hour12: false,
+            timeZone: (window.sdMain && sdMain.timezone) || 'Europe/Istanbul', hour12: false,
             hour: '2-digit', minute: '2-digit', second: '2-digit'
         });
         const timeElement = document.getElementById('footer-time');
-        if(timeElement) timeElement.textContent = timeString + ' TRT';
+        if(timeElement) timeElement.textContent = timeString + ' ' + ((window.sdMain && sdMain.timezoneLabel) || '');
     }
     setInterval(updateTime, 1000);
     updateTime();

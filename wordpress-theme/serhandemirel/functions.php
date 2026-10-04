@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'SD_THEME_VERSION', '1.0.0' );
 
 require get_template_directory() . '/inc/brands.php';
+require get_template_directory() . '/inc/options.php';
+require get_template_directory() . '/inc/options-page.php';
+require get_template_directory() . '/inc/tracking.php';
 
 /**
  * The contact form, content types and fields live in the companion
@@ -59,6 +62,15 @@ function sd_enqueue_assets() {
 	wp_enqueue_script( 'lenis', 'https://unpkg.com/lenis@1.1.13/dist/lenis.min.js', array(), '1.1.13', true );
 
 	wp_enqueue_script( 'sd-main', $uri . '/assets/js/main.js', array( 'gsap', 'gsap-scrolltrigger', 'lenis' ), SD_THEME_VERSION, true );
+	wp_localize_script(
+		'sd-main',
+		'sdMain',
+		array(
+			'words'         => sd_opt_lines( 'words' ),
+			'timezone'      => sd_opt( 'timezone' ),
+			'timezoneLabel' => sd_opt( 'timezone_label' ),
+		)
+	);
 
 	wp_enqueue_script( 'sd-brands', $uri . '/assets/js/brands.js', array(), SD_THEME_VERSION, true );
 	wp_localize_script(
@@ -78,6 +90,7 @@ function sd_enqueue_assets() {
 			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 			'action'  => 'sd_contact',
 			'nonce'   => wp_create_nonce( 'sd_contact' ),
+			'lang'    => sd_current_lang(),
 		)
 	);
 }
@@ -100,16 +113,21 @@ remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 /**
- * Meta, social and favicon tags.
+ * Whether an SEO plugin prints description and social tags itself.
+ *
+ * @return bool
+ */
+function sd_has_seo_plugin() {
+	return defined( 'WPSEO_VERSION' ) || class_exists( 'RankMath' ) || defined( 'AIOSEO_VERSION' ) || defined( 'SEOPRESS_VERSION' );
+}
+
+/**
+ * Meta, social and favicon tags. Description and social tags come from the
+ * General settings tab and are left to an SEO plugin when one is active.
  */
 function sd_head_meta() {
 	$icons = get_template_directory_uri() . '/assets/icons/';
-	$image = get_template_directory_uri() . '/assets/img/SD-logo-300px.webp';
-	$url   = home_url( '/' );
-	$title = 'Serhan Demirel | Digital Solutions Provider';
-	$desc  = 'Engineering the digital future. Scalable digital foundations, AI & automation, and digital products.';
 	?>
-	<meta name="description" content="Serhan Demirel - Digital Solutions Provider specializing in business transformation, scalable digital foundations, and AI &amp; automation.">
 	<meta name="author" content="Serhan Demirel">
 	<meta name="theme-color" content="#050505">
 
@@ -121,9 +139,25 @@ function sd_head_meta() {
 	<link rel="shortcut icon" href="<?php echo esc_url( $icons . 'favicon.ico' ); ?>">
 	<?php endif; ?>
 	<link rel="manifest" href="<?php echo esc_url( get_template_directory_uri() . '/site.webmanifest' ); ?>">
+	<?php
+	if ( sd_has_seo_plugin() ) {
+		return;
+	}
+
+	$title = sd_opt( 'seo_title' );
+	$desc  = sd_opt( 'seo_description' );
+	$image = sd_opt( 'og_image' ) ? wp_get_attachment_image_url( (int) sd_opt( 'og_image' ), 'full' ) : '';
+	$image = $image ? $image : get_template_directory_uri() . '/assets/img/SD-logo-300px.webp';
+	$url   = is_singular() ? get_permalink() : home_url( '/' );
+	if ( is_singular() && ! is_front_page() ) {
+		$title = wp_get_document_title();
+		$desc  = has_excerpt() ? get_the_excerpt() : $desc;
+	}
+	?>
+	<meta name="description" content="<?php echo esc_attr( $desc ); ?>">
 
 	<!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="<?php echo is_singular( 'post' ) ? 'article' : 'website'; ?>">
 	<meta property="og:url" content="<?php echo esc_url( $url ); ?>">
 	<meta property="og:title" content="<?php echo esc_attr( $title ); ?>">
 	<meta property="og:description" content="<?php echo esc_attr( $desc ); ?>">
@@ -138,24 +172,6 @@ function sd_head_meta() {
 	<?php
 }
 add_action( 'wp_head', 'sd_head_meta', 1 );
-
-/**
- * Google tag + Google Tag Manager, as on the static site.
- */
-function sd_head_analytics() {
-	?>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-P8MNLDTX09"></script>
-	<!-- Google Tag Manager -->
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-5JJSC7D5');</script>
-	<!-- End Google Tag Manager -->
-	<?php
-}
-add_action( 'wp_head', 'sd_head_analytics', 2 );
 
 /**
  * Prefix for in-page anchors: "#contact" on the front page, "/#contact" elsewhere.

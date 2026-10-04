@@ -15,8 +15,8 @@
         <!-- Başlık ve Yönlendirme (Kapsayıcı içinde) -->
         <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             <div>
-                <h2 class="text-sm font-bold tracking-[0.2em] uppercase text-purple-500 mb-4">Core Expertise</h2>
-                <h3 class="text-3xl md:text-5xl font-bold text-white max-w-2xl">Building scalable digital foundations for tomorrow.</h3>
+                <h2 class="text-sm font-bold tracking-[0.2em] uppercase text-purple-500 mb-4"><?php echo esc_html( sd_opt( 'expertise_eyebrow' ) ); ?></h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white max-w-2xl"><?php echo esc_html( sd_opt( 'expertise_title' ) ); ?></h3>
             </div>
 
             <!-- Modern Navigation Controls -->

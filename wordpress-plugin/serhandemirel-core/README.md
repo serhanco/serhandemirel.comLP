@@ -36,4 +36,4 @@ With Polylang, projects, expertise cards, posts, industries and services get a c
 
 ## Contact form
 
-The theme's form posts to `admin-ajax.php` (`action=sd_contact`) with `Name`, `Email`, `Message` and a nonce, and may also send `lang`, `source`, `utm_source`, `utm_campaign`. Without UTM fields the handler reads an `sd_utm` cookie (`{"source": "...", "campaign": "..."}`). Each message is saved with its name, email, language, source page, campaign and a status (New, Replied, Archived), and emailed to the site admin address. New messages show as a count next to the menu item.
+The theme's form posts to `admin-ajax.php` (`action=sd_contact`) with `Name`, `Email`, `Message` and a nonce, and may also send `lang`, `source`, `utm_source`, `utm_campaign`. Without UTM fields the handler reads an `sd_utm` cookie (`{"source": "...", "campaign": "..."}`). Each message is saved with its name, email, language, source page, campaign and a status (New, Replied, Archived), and emailed to the site admin address (filter `sdc_contact_recipient`; the theme sets it from its Form settings). New messages show as a count next to the menu item.

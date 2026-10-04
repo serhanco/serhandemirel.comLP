@@ -139,8 +139,15 @@ function sdc_handle_contact() {
 		$lines[] = 'Campaign: ' . trim( $utm['source'] . ' / ' . $utm['campaign'], ' /' );
 	}
 
+	/**
+	 * Address that receives form messages; the theme's Form settings can change it.
+	 *
+	 * @param string $email Defaults to the site admin address.
+	 */
+	$recipient = apply_filters( 'sdc_contact_recipient', get_option( 'admin_email' ) );
+
 	wp_mail(
-		get_option( 'admin_email' ),
+		$recipient,
 		sprintf( 'New project inquiry from %s', $name ),
 		implode( "\n", $lines ) . "\n\n" . $message . "\n\n" . admin_url( 'post.php?post=' . $post_id . '&action=edit' ),
 		array( 'Reply-To: ' . $name . ' <' . $email . '>' )
