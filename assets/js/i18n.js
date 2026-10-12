@@ -514,8 +514,29 @@
         });
     }
 
+    // --- Flag row (mobile fullscreen menu) ---
+    function buildFlagRow(container) {
+        container.innerHTML = LANGUAGES.map(l => `
+            <button type="button" data-lang="${l.code}" class="lang-flag p-1 rounded-xl border border-transparent transition-all cursor-pointer" title="${l.label}" aria-label="${l.label}">
+                <img class="w-9 h-6 rounded-md object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.15)]" src="${flagSrc(l.code)}" alt="" width="36" height="24">
+            </button>`).join('');
+        container.querySelectorAll('.lang-flag').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                setLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+    }
+
     function updateSwitchers() {
         const current = LANGUAGES.find(l => l.code === currentLang);
+        document.querySelectorAll('[data-lang-flags] .lang-flag').forEach(btn => {
+            const active = btn.getAttribute('data-lang') === currentLang;
+            btn.setAttribute('aria-pressed', String(active));
+            btn.classList.toggle('border-fuchsia-400/70', active);
+            btn.classList.toggle('bg-white/10', active);
+            btn.classList.toggle('opacity-50', !active);
+        });
         document.querySelectorAll('[data-lang-switcher]').forEach(sw => {
             const flag = sw.querySelector('.lang-current-flag');
             const code = sw.querySelector('.lang-current-code');
@@ -544,5 +565,6 @@
     };
 
     document.querySelectorAll('[data-lang-switcher]').forEach(buildSwitcher);
+    document.querySelectorAll('[data-lang-flags]').forEach(buildFlagRow);
     applyTranslations();
 })();
