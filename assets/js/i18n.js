@@ -3,7 +3,7 @@
  * - Elements use data-i18n="key" (textContent), data-i18n-placeholder="key",
  *   data-i18n-aria="key" (aria-label) and data-i18n-wa="key" (WhatsApp prefill).
  * - English is the default; the visitor's choice is stored in localStorage.
- * - Language order in the switcher: EN, TR, FR, NL, IT, ES.
+ * - Language order in the switcher: TR, EN, FR, NL, IT, ES (EN stays the default).
  */
 (function () {
     const STORAGE_KEY = 'sd-lang';
@@ -11,19 +11,17 @@
     const WA_NUMBER = '905322702736';
 
     const LANGUAGES = [
-        { code: 'en', label: 'English' },
         { code: 'tr', label: 'Türkçe' },
+        { code: 'en', label: 'English' },
         { code: 'fr', label: 'Français' },
         { code: 'nl', label: 'Nederlands' },
         { code: 'it', label: 'Italiano' },
         { code: 'es', label: 'Español' }
     ];
 
-    // Job title stays in English in every language.
-    const TITLE = 'Serhan Demirel | Digital Solutions Architect';
-
     const TRANSLATIONS = {
         en: {
+            'hero.title': 'Digital Solutions Architect',
             'meta.description': 'Serhan Demirel - Digital Solutions Architect specializing in business transformation, scalable digital foundations, and AI & automation.',
             'lang.label': 'Language',
             'nav.expertise': 'Expertise',
@@ -88,7 +86,8 @@
             'success.close': 'Close Window'
         },
         tr: {
-            'meta.description': 'Serhan Demirel - İş dönüşümü, ölçeklenebilir dijital altyapılar, yapay zekâ ve otomasyon alanlarında uzman Digital Solutions Architect.',
+            'hero.title': 'Dijital Çözüm Mimarı',
+            'meta.description': 'Serhan Demirel - İş dönüşümü, ölçeklenebilir dijital altyapılar, yapay zekâ ve otomasyon alanlarında uzman Dijital Çözüm Mimarı.',
             'lang.label': 'Dil',
             'nav.expertise': 'Uzmanlık',
             'nav.brands': 'Markalar',
@@ -152,7 +151,8 @@
             'success.close': 'Pencereyi Kapat'
         },
         fr: {
-            'meta.description': "Serhan Demirel - Digital Solutions Architect spécialisé dans la transformation des entreprises, les fondations numériques évolutives, l'IA et l'automatisation.",
+            'hero.title': 'Architecte de solutions digitales',
+            'meta.description': "Serhan Demirel - Architecte de solutions digitales spécialisé dans la transformation des entreprises, les fondations numériques évolutives, l'IA et l'automatisation.",
             'lang.label': 'Langue',
             'nav.expertise': 'Expertise',
             'nav.brands': 'Marques',
@@ -216,7 +216,8 @@
             'success.close': 'Fermer'
         },
         nl: {
-            'meta.description': 'Serhan Demirel - Digital Solutions Architect, gespecialiseerd in bedrijfstransformatie, schaalbare digitale fundamenten en AI & automatisering.',
+            'hero.title': 'Architect digitale oplossingen',
+            'meta.description': 'Serhan Demirel - Architect digitale oplossingen, gespecialiseerd in bedrijfstransformatie, schaalbare digitale fundamenten en AI & automatisering.',
             'lang.label': 'Taal',
             'nav.expertise': 'Expertise',
             'nav.brands': 'Merken',
@@ -280,7 +281,8 @@
             'success.close': 'Venster sluiten'
         },
         it: {
-            'meta.description': "Serhan Demirel - Digital Solutions Architect specializzato in trasformazione aziendale, fondamenta digitali scalabili, AI e automazione.",
+            'hero.title': 'Architetto di soluzioni digitali',
+            'meta.description': "Serhan Demirel - Architetto di soluzioni digitali specializzato in trasformazione aziendale, fondamenta digitali scalabili, AI e automazione.",
             'lang.label': 'Lingua',
             'nav.expertise': 'Competenze',
             'nav.brands': 'Brand',
@@ -344,7 +346,8 @@
             'success.close': 'Chiudi'
         },
         es: {
-            'meta.description': 'Serhan Demirel - Digital Solutions Architect especializado en transformación empresarial, bases digitales escalables, IA y automatización.',
+            'hero.title': 'Arquitecto de soluciones digitales',
+            'meta.description': 'Serhan Demirel - Arquitecto de soluciones digitales especializado en transformación empresarial, bases digitales escalables, IA y automatización.',
             'lang.label': 'Idioma',
             'nav.expertise': 'Experiencia',
             'nav.brands': 'Marcas',
@@ -435,7 +438,7 @@
 
     function applyTranslations() {
         document.documentElement.lang = currentLang;
-        document.title = TITLE;
+        document.title = 'Serhan Demirel | ' + t('hero.title');
 
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc) metaDesc.setAttribute('content', t('meta.description'));
