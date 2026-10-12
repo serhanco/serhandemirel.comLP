@@ -530,7 +530,9 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    lenis.scrollTo(this.getAttribute('href'));
+                    const target = this.getAttribute('href');
+                    // Bare "#" (the SD. logo) scrolls to the very top
+                    lenis.scrollTo(target === '#' ? 0 : target);
                 });
             });
 
