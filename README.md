@@ -8,6 +8,7 @@ My personal website featuring smooth scroll animations and a modern, minimalist 
 - Dark mode support
 - Modern UI with subtle interactions
 - Performance optimized
+- Multi-language support (EN, TR, FR, NL, IT, ES) with a flag-based language switcher
 
 ## Technologies
 - HTML5
