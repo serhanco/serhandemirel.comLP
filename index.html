@@ -42,8 +42,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preload" href="/assets/fonts/inter/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/main.css?v=1">
     
     <style>
         body {
@@ -510,9 +511,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script defer src="assets/js/vendor/gsap.min.js"></script>
+    <script defer src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script defer src="assets/js/vendor/lenis.min.js"></script>
     
     <script>
         function initPortfolio() {
@@ -597,8 +598,11 @@
                     mouse.y = e.y;
                 });
 
+                // Hero görünmüyorken (aşağı kaydırılmışken) canvas döngüsünü durdur
+                let heroVisible = true, rafId = null;
                 function animateParticles() {
-                    requestAnimationFrame(animateParticles);
+                    if (!heroVisible) { rafId = null; return; }
+                    rafId = requestAnimationFrame(animateParticles);
                     ctx.clearRect(0, 0, width, height);
                     
                     particles.forEach(p => {
@@ -679,6 +683,13 @@
                 
                 initParticles();
                 animateParticles();
+
+                if ('IntersectionObserver' in window) {
+                    new IntersectionObserver(([entry]) => {
+                        heroVisible = entry.isIntersecting;
+                        if (heroVisible && rafId === null) animateParticles();
+                    }).observe(canvas);
+                }
                 
                 let lastWidth = window.innerWidth;
                 window.addEventListener('resize', () => {
@@ -933,43 +944,43 @@
 
       // 4. LOGO SIRALAMASI
       const BRAND_LOGOS = [
-          { src: 'acibadem.svg', alt: 'Acıbadem' },
-          { src: 'florence.png', alt: 'Florence Nightingale' },
-          { src: 'arcelik.svg', alt: 'Arçelik' },
-          { src: 'beko.png', alt: 'Beko' },
-          { src: 'tse.svg', alt: 'TSE' },
-          { src: 'kollektif.svg', alt: 'Kollektif' },
-          { src: 'ulker_arena.png', alt: 'Ülker Sports Arena' },
-          { src: 'burn.png', alt: 'Burn' },
-          { src: 'adresin.png', alt: 'Adresin.com' },
-          { src: 'steminorder.png', alt: 'Steminorder' },
-          { src: 'hekim_bilisim.svg', alt: 'Hekim Bilişim' },
-          { src: 'dbs.png', alt: 'DBS Architecture' },
-          { src: 'acibadem_imc.png', alt: 'Acıbadem International Medical Center' },
-          { src: 'iesyazilim.png', alt: 'İES Yazılım' },
-          { src: 'healthcare_diplomacy.png', alt: 'Healthcare Diplomacy' },
-          { src: 'semih_halezeroglu.svg', alt: 'Prof. Dr. Semih Halezeroğlu' },
-          { src: 'superpay.png', alt: 'SuperPay' },
-          { src: 'hilal_celik.png', alt: 'Hilal Çelik Halat' },
-          { src: 'oguz_kayiran.png', alt: 'Prof. Dr. Oğuz Kayıran' },
-          { src: 'renewa.png', alt: 'Renewa Clinic' },
-          { src: 'koray_ozduman.png', alt: 'Prof. Dr. Koray Özduman' },
-          { src: 'acibadem_mobil.png', alt: 'Acıbadem Mobil' },
-          { src: 'whitesoft.png', alt: 'White&Soft' },
-          { src: 'ulker_yupo.png', alt: 'Ülker Yupo' },
-          { src: 'paraf.png', alt: 'Paraf' },
-          { src: 'clinicton.png', alt: 'Clinicton' },
-          { src: 'albayrak_tente.png', alt: 'Albayrak Tente' },
-          { src: 'coordin_art.png', alt: 'Coordin.Art' },
-          { src: 'meseri_energy.png', alt: 'Meseri Energy' },
-          { src: 'ee_architecture.png', alt: 'EE Architecture' },
-          { src: 'uniplast.png', alt: 'Uniplast' },
-          { src: 'koza.png', alt: 'Koza Otomotiv' },
-          { src: 'corin.png', alt: 'Corin' },
-          { src: 'gungor.png', alt: 'Güngör Otomobil' },
-          { src: 'dgs.png', alt: 'DGS' },
-          { src: 'keysmart.png', alt: 'KeySmart' },
-          { src: 'hedef_yelken.png', alt: 'Hedef Yelken' }
+          { src: 'acibadem.svg', w: 637, h: 76, alt: 'Acıbadem' },
+          { src: 'florence.webp', w: 337, h: 144, alt: 'Florence Nightingale' },
+          { src: 'arcelik.svg', w: 120, h: 29, alt: 'Arçelik' },
+          { src: 'beko.webp', w: 252, h: 144, alt: 'Beko' },
+          { src: 'tse.svg', w: 252, h: 68, alt: 'TSE' },
+          { src: 'kollektif.svg', w: 106, h: 146, alt: 'Kollektif' },
+          { src: 'ulker_arena.webp', w: 274, h: 131, alt: 'Ülker Sports Arena' },
+          { src: 'burn.webp', w: 240, h: 144, alt: 'Burn' },
+          { src: 'adresin.webp', w: 393, h: 144, alt: 'Adresin.com' },
+          { src: 'steminorder.webp', w: 263, h: 51, alt: 'Steminorder' },
+          { src: 'hekim_bilisim.svg', w: 101, h: 25, alt: 'Hekim Bilişim' },
+          { src: 'dbs.webp', w: 150, h: 74, alt: 'DBS Architecture' },
+          { src: 'acibadem_imc.webp', w: 722, h: 134, alt: 'Acıbadem International Medical Center' },
+          { src: 'iesyazilim.webp', w: 207, h: 84, alt: 'İES Yazılım' },
+          { src: 'healthcare_diplomacy.webp', w: 182, h: 144, alt: 'Healthcare Diplomacy' },
+          { src: 'semih_halezeroglu.svg', w: 2084, h: 347, alt: 'Prof. Dr. Semih Halezeroğlu' },
+          { src: 'superpay.webp', w: 424, h: 125, alt: 'SuperPay' },
+          { src: 'hilal_celik.webp', w: 140, h: 144, alt: 'Hilal Çelik Halat' },
+          { src: 'oguz_kayiran.webp', w: 631, h: 144, alt: 'Prof. Dr. Oğuz Kayıran' },
+          { src: 'renewa.webp', w: 561, h: 144, alt: 'Renewa Clinic' },
+          { src: 'koray_ozduman.webp', w: 737, h: 144, alt: 'Prof. Dr. Koray Özduman' },
+          { src: 'acibadem_mobil.webp', w: 514, h: 144, alt: 'Acıbadem Mobil' },
+          { src: 'whitesoft.webp', w: 470, h: 86, alt: 'White&Soft' },
+          { src: 'ulker_yupo.webp', w: 229, h: 144, alt: 'Ülker Yupo' },
+          { src: 'paraf.webp', w: 206, h: 144, alt: 'Paraf' },
+          { src: 'clinicton.webp', w: 480, h: 144, alt: 'Clinicton' },
+          { src: 'albayrak_tente.webp', w: 256, h: 91, alt: 'Albayrak Tente' },
+          { src: 'coordin_art.webp', w: 220, h: 144, alt: 'Coordin.Art' },
+          { src: 'meseri_energy.webp', w: 353, h: 144, alt: 'Meseri Energy' },
+          { src: 'ee_architecture.webp', w: 406, h: 102, alt: 'EE Architecture' },
+          { src: 'uniplast.webp', w: 348, h: 144, alt: 'Uniplast' },
+          { src: 'koza.webp', w: 364, h: 144, alt: 'Koza Otomotiv' },
+          { src: 'corin.webp', w: 381, h: 144, alt: 'Corin' },
+          { src: 'gungor.webp', w: 539, h: 144, alt: 'Güngör Otomobil' },
+          { src: 'dgs.webp', w: 197, h: 84, alt: 'DGS' },
+          { src: 'keysmart.webp', w: 164, h: 37, alt: 'KeySmart' },
+          { src: 'hedef_yelken.webp', w: 480, h: 68, alt: 'Hedef Yelken' }
       ];
 
       document.addEventListener("DOMContentLoaded", () => {
@@ -1014,7 +1025,7 @@
                   let chunkHtml = '';
                   chunk.forEach(logo => {
                       const folder = LOGO_THEME === 'white' ? 'white' : 'color';
-                      chunkHtml += `<img src="assets/img/brands/${folder}/${logo.src}?v=5" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
+                      chunkHtml += `<img src="assets/img/brands/${folder}/${logo.src}?v=6" width="${logo.w}" height="${logo.h}" decoding="async" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
                   });
                   
                   // To guarantee the infinite loop has no blank gaps,
