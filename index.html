@@ -29,8 +29,6 @@
     <meta property="twitter:title" content="Serhan Demirel | Digital Solutions Architect">
     <meta property="twitter:description" content="Engineering the digital future. Scalable digital foundations, AI & automation, and digital products.">
     <meta property="twitter:image" content="https://serhandemirel.com/img/SD-logo-300px.webp">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8MNLDTX09"></script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -42,8 +40,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preload" href="/assets/fonts/inter/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/css/main.css?v=1">
     
     <style>
         body {
@@ -178,7 +177,7 @@
         <!-- Mobile Language Switcher + Menu Trigger -->
         <div class="md:hidden flex items-center gap-3 relative z-[120]">
         <div data-lang-switcher></div>
-        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none relative w-8 h-8 z-[120] flex items-center justify-center bg-transparent">
+        <button id="mobile-menu-btn" aria-label="Menu" class="md:hidden text-white focus:outline-none relative w-8 h-8 z-[120] flex items-center justify-center bg-transparent">
             <!-- Hamburger Icon -->
             <svg id="icon-menu" class="w-6 h-6 absolute transition-all duration-300 transform rotate-0 opacity-100 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             <!-- Close Icon -->
@@ -496,7 +495,7 @@
 
     <!-- Floating Dual Contact Bar (Mobilde ve masaüstünde scroll edince çıkar) -->
     <div id="sticky-contact" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] translate-y-[150%] opacity-0 transition-all duration-500 ease-out pointer-events-none flex gap-3">
-        <a href="https://wa.me/905322702736?text=Hello%20Serhan," target="_blank" data-i18n-wa="wa.text" class="pointer-events-auto group flex items-center gap-2 bg-[#050505] border border-emerald-500/30 px-4 md:px-5 py-3 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:border-emerald-500/70 hover:bg-emerald-500/10 transition-all hover:scale-105">
+        <a href="https://wa.me/905322702736?text=Hello%20Serhan," target="_blank" aria-label="WhatsApp" data-i18n-wa="wa.text" class="pointer-events-auto group flex items-center gap-2 bg-[#050505] border border-emerald-500/30 px-4 md:px-5 py-3 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:border-emerald-500/70 hover:bg-emerald-500/10 transition-all hover:scale-105">
             <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
             <span class="text-sm font-semibold text-emerald-400 whitespace-nowrap hidden md:block">WhatsApp</span>
         </a>
@@ -510,9 +509,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script defer src="assets/js/vendor/gsap.min.js"></script>
+    <script defer src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script defer src="assets/js/vendor/lenis.min.js"></script>
     
     <script>
         function initPortfolio() {
@@ -597,8 +596,11 @@
                     mouse.y = e.y;
                 });
 
+                // Hero görünmüyorken (aşağı kaydırılmışken) canvas döngüsünü durdur
+                let heroVisible = true, rafId = null;
                 function animateParticles() {
-                    requestAnimationFrame(animateParticles);
+                    if (!heroVisible) { rafId = null; return; }
+                    rafId = requestAnimationFrame(animateParticles);
                     ctx.clearRect(0, 0, width, height);
                     
                     particles.forEach(p => {
@@ -679,6 +681,13 @@
                 
                 initParticles();
                 animateParticles();
+
+                if ('IntersectionObserver' in window) {
+                    new IntersectionObserver(([entry]) => {
+                        heroVisible = entry.isIntersecting;
+                        if (heroVisible && rafId === null) animateParticles();
+                    }).observe(canvas);
+                }
                 
                 let lastWidth = window.innerWidth;
                 window.addEventListener('resize', () => {
@@ -933,43 +942,43 @@
 
       // 4. LOGO SIRALAMASI
       const BRAND_LOGOS = [
-          { src: 'acibadem.svg', alt: 'Acıbadem' },
-          { src: 'florence.png', alt: 'Florence Nightingale' },
-          { src: 'arcelik.svg', alt: 'Arçelik' },
-          { src: 'beko.png', alt: 'Beko' },
-          { src: 'tse.svg', alt: 'TSE' },
-          { src: 'kollektif.svg', alt: 'Kollektif' },
-          { src: 'ulker_arena.png', alt: 'Ülker Sports Arena' },
-          { src: 'burn.png', alt: 'Burn' },
-          { src: 'adresin.png', alt: 'Adresin.com' },
-          { src: 'steminorder.png', alt: 'Steminorder' },
-          { src: 'hekim_bilisim.svg', alt: 'Hekim Bilişim' },
-          { src: 'dbs.png', alt: 'DBS Architecture' },
-          { src: 'acibadem_imc.png', alt: 'Acıbadem International Medical Center' },
-          { src: 'iesyazilim.png', alt: 'İES Yazılım' },
-          { src: 'healthcare_diplomacy.png', alt: 'Healthcare Diplomacy' },
-          { src: 'semih_halezeroglu.svg', alt: 'Prof. Dr. Semih Halezeroğlu' },
-          { src: 'superpay.png', alt: 'SuperPay' },
-          { src: 'hilal_celik.png', alt: 'Hilal Çelik Halat' },
-          { src: 'oguz_kayiran.png', alt: 'Prof. Dr. Oğuz Kayıran' },
-          { src: 'renewa.png', alt: 'Renewa Clinic' },
-          { src: 'koray_ozduman.png', alt: 'Prof. Dr. Koray Özduman' },
-          { src: 'acibadem_mobil.png', alt: 'Acıbadem Mobil' },
-          { src: 'whitesoft.png', alt: 'White&Soft' },
-          { src: 'ulker_yupo.png', alt: 'Ülker Yupo' },
-          { src: 'paraf.png', alt: 'Paraf' },
-          { src: 'clinicton.png', alt: 'Clinicton' },
-          { src: 'albayrak_tente.png', alt: 'Albayrak Tente' },
-          { src: 'coordin_art.png', alt: 'Coordin.Art' },
-          { src: 'meseri_energy.png', alt: 'Meseri Energy' },
-          { src: 'ee_architecture.png', alt: 'EE Architecture' },
-          { src: 'uniplast.png', alt: 'Uniplast' },
-          { src: 'koza.png', alt: 'Koza Otomotiv' },
-          { src: 'corin.png', alt: 'Corin' },
-          { src: 'gungor.png', alt: 'Güngör Otomobil' },
-          { src: 'dgs.png', alt: 'DGS' },
-          { src: 'keysmart.png', alt: 'KeySmart' },
-          { src: 'hedef_yelken.png', alt: 'Hedef Yelken' }
+          { src: 'acibadem.svg', w: 637, h: 76, alt: 'Acıbadem' },
+          { src: 'florence.webp', w: 337, h: 144, alt: 'Florence Nightingale' },
+          { src: 'arcelik.svg', w: 120, h: 29, alt: 'Arçelik' },
+          { src: 'beko.webp', w: 252, h: 144, alt: 'Beko' },
+          { src: 'tse.svg', w: 252, h: 68, alt: 'TSE' },
+          { src: 'kollektif.svg', w: 106, h: 146, alt: 'Kollektif' },
+          { src: 'ulker_arena.webp', w: 274, h: 131, alt: 'Ülker Sports Arena' },
+          { src: 'burn.webp', w: 240, h: 144, alt: 'Burn' },
+          { src: 'adresin.webp', w: 393, h: 144, alt: 'Adresin.com' },
+          { src: 'steminorder.webp', w: 263, h: 51, alt: 'Steminorder' },
+          { src: 'hekim_bilisim.svg', w: 101, h: 25, alt: 'Hekim Bilişim' },
+          { src: 'dbs.webp', w: 150, h: 74, alt: 'DBS Architecture' },
+          { src: 'acibadem_imc.webp', w: 722, h: 134, alt: 'Acıbadem International Medical Center' },
+          { src: 'iesyazilim.webp', w: 207, h: 84, alt: 'İES Yazılım' },
+          { src: 'healthcare_diplomacy.webp', w: 182, h: 144, alt: 'Healthcare Diplomacy' },
+          { src: 'semih_halezeroglu.svg', w: 2084, h: 347, alt: 'Prof. Dr. Semih Halezeroğlu' },
+          { src: 'superpay.webp', w: 424, h: 125, alt: 'SuperPay' },
+          { src: 'hilal_celik.webp', w: 140, h: 144, alt: 'Hilal Çelik Halat' },
+          { src: 'oguz_kayiran.webp', w: 631, h: 144, alt: 'Prof. Dr. Oğuz Kayıran' },
+          { src: 'renewa.webp', w: 561, h: 144, alt: 'Renewa Clinic' },
+          { src: 'koray_ozduman.webp', w: 737, h: 144, alt: 'Prof. Dr. Koray Özduman' },
+          { src: 'acibadem_mobil.webp', w: 514, h: 144, alt: 'Acıbadem Mobil' },
+          { src: 'whitesoft.webp', w: 470, h: 86, alt: 'White&Soft' },
+          { src: 'ulker_yupo.webp', w: 229, h: 144, alt: 'Ülker Yupo' },
+          { src: 'paraf.webp', w: 206, h: 144, alt: 'Paraf' },
+          { src: 'clinicton.webp', w: 480, h: 144, alt: 'Clinicton' },
+          { src: 'albayrak_tente.webp', w: 256, h: 91, alt: 'Albayrak Tente' },
+          { src: 'coordin_art.webp', w: 220, h: 144, alt: 'Coordin.Art' },
+          { src: 'meseri_energy.webp', w: 353, h: 144, alt: 'Meseri Energy' },
+          { src: 'ee_architecture.webp', w: 406, h: 102, alt: 'EE Architecture' },
+          { src: 'uniplast.webp', w: 348, h: 144, alt: 'Uniplast' },
+          { src: 'koza.webp', w: 364, h: 144, alt: 'Koza Otomotiv' },
+          { src: 'corin.webp', w: 381, h: 144, alt: 'Corin' },
+          { src: 'gungor.webp', w: 539, h: 144, alt: 'Güngör Otomobil' },
+          { src: 'dgs.webp', w: 197, h: 84, alt: 'DGS' },
+          { src: 'keysmart.webp', w: 164, h: 37, alt: 'KeySmart' },
+          { src: 'hedef_yelken.webp', w: 480, h: 68, alt: 'Hedef Yelken' }
       ];
 
       document.addEventListener("DOMContentLoaded", () => {
@@ -1014,7 +1023,7 @@
                   let chunkHtml = '';
                   chunk.forEach(logo => {
                       const folder = LOGO_THEME === 'white' ? 'white' : 'color';
-                      chunkHtml += `<img src="assets/img/brands/${folder}/${logo.src}?v=5" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
+                      chunkHtml += `<img src="assets/img/brands/${folder}/${logo.src}?v=6" width="${logo.w}" height="${logo.h}" decoding="async" alt="${logo.alt}" class="h-10 md:h-12 w-auto opacity-40 hover:opacity-100 transition-opacity">`;
                   });
                   
                   // To guarantee the infinite loop has no blank gaps,
@@ -1068,7 +1077,7 @@
         <!-- Modal Content -->
         <div id="projectModalContent" class="relative w-[90%] max-w-2xl max-h-[90vh] overflow-y-auto bg-[#0a0a0a] border border-white/10 rounded-3xl shadow-2xl scale-95 opacity-0 transition-all duration-300">
             <!-- Close button -->
-            <button type="button" onclick="closeProjectModal()" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors z-10 cursor-pointer">
+            <button type="button" onclick="closeProjectModal()" aria-label="Close" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors z-10 cursor-pointer">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             

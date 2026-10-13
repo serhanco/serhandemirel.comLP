@@ -1,0 +1,10 @@
+{
+  "name": "serhandemirel.com",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/main.css -o ./assets/css/main.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
