@@ -1,0 +1,105 @@
+/*
+Theme Name: Serhan Demirel
+Theme URI: https://serhandemirel.com
+Author: Serhan Demirel
+Author URI: https://serhandemirel.com
+Description: One-page personal theme for serhandemirel.com. Tailwind (Play CDN), GSAP + ScrollTrigger and Lenis smooth scrolling.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+License: All rights reserved
+Text Domain: serhandemirel
+*/
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #050505;
+    color: #ffffff;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #444; }
+
+/* Hide Scrollbar for Horizontal Slider but keep functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.gradient-text {
+    background: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradient-shift 5s linear infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.word-mask {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 1.2em;
+    overflow: hidden;
+    vertical-align: bottom;
+    position: relative;
+    top: 0.05em;
+}
+
+.word-slider-inner {
+    display: flex;
+    flex-direction: column;
+    will-change: transform; 
+}
+
+.word-item {
+    height: 1.2em;
+    line-height: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Faded Edges for Logo Wall */
+.mask-edges {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+/* Smooth Continuous Infinite Marquee */
+.marquee-row-left {
+    animation: scroll-marquee-left var(--marquee-speed, 50s) linear infinite;
+}
+.marquee-row-right {
+    animation: scroll-marquee-right var(--marquee-speed, 50s) linear infinite;
+}
+/* Optional: Pause on hover so users can inspect logos */
+#marquee-container:hover .marquee-row-left,
+#marquee-container:hover .marquee-row-right {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-marquee-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+@keyframes scroll-marquee-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
